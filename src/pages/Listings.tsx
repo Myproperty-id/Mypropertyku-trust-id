@@ -17,8 +17,8 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { CardSkeleton } from "@/components/ui/loading-skeleton";
-import { NoPropertiesEmpty } from "@/components/ui/empty-state";
+import { PropertyCardSkeleton } from "@/components/ui/loading-skeleton";
+import { NoSearchResultsEmpty } from "@/components/ui/empty-state";
 import property1 from "@/assets/property-1.jpg";
 
 interface Property {
@@ -289,10 +289,10 @@ const Listings = () => {
 
               {loading ? (
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-                  {[1,2,3,4,5,6].map(i => <CardSkeleton key={i} />)}
+                  {[1,2,3,4,5,6].map(i => <PropertyCardSkeleton key={i} />)}
                 </div>
               ) : filteredProperties.length === 0 ? (
-                <NoPropertiesEmpty />
+                <NoSearchResultsEmpty onReset={clearFilters} />
               ) : (
                 <div className={`grid gap-6 ${viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-3" : "grid-cols-1"}`}>
                   {filteredProperties.map((property) => (
