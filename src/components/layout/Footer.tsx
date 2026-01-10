@@ -50,9 +50,9 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Layanan</h4>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               <li><Link to="/post-property" className="hover:text-primary-foreground transition-colors">Pasang Iklan</Link></li>
-              <li><Link to="/verification" className="hover:text-primary-foreground transition-colors">Verifikasi Properti</Link></li>
               <li><Link to="/how-it-works" className="hover:text-primary-foreground transition-colors">Cara Kerja</Link></li>
               <li><Link to="/pricing" className="hover:text-primary-foreground transition-colors">Harga Layanan</Link></li>
+              <li><Link to="/about" className="hover:text-primary-foreground transition-colors">Tentang Kami</Link></li>
             </ul>
           </div>
 
