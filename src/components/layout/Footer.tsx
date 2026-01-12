@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import myPropertyLogo from "@/assets/myproperty-logo.png";
 
 const Footer = () => {
   return (
@@ -9,10 +10,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary-foreground">
-                <ShieldCheck className="w-6 h-6 text-primary" />
-              </div>
-              <span className="text-xl font-bold">MyProperty</span>
+              <img 
+                src={myPropertyLogo} 
+                alt="MyProperty Logo" 
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
             </Link>
             <p className="text-sm text-primary-foreground/70 mb-6">
               Marketplace properti aman dan terverifikasi di Indonesia. Cek legalitas, kurangi risiko sengketa.

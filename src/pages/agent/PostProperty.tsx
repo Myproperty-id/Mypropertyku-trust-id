@@ -19,6 +19,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/layout/Navbar";
 import { useToast } from "@/hooks/use-toast";
+import { useRateLimit } from "@/hooks/useRateLimit";
+import { propertyFormSchema, parsePriceToNumber } from "@/lib/validations/property";
 
 type CertificateType = "shm" | "shgb" | "hpl" | "girik" | "ajb" | "ppjb";
 
@@ -45,8 +47,10 @@ const PostProperty = () => {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { checkRateLimit, isLimited, retryAfter } = useRateLimit();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState<PropertyData>({
     title: "",
     description: "",
@@ -74,6 +78,14 @@ const PostProperty = () => {
 
   const updateField = (field: keyof PropertyData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear validation error when field is updated
+    if (validationErrors[field]) {
+      setValidationErrors(prev => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
   };
 
   const steps = [
@@ -104,26 +116,58 @@ const PostProperty = () => {
   const handleSubmit = async () => {
     if (!user) return;
     
+    // Validate form data with Zod schema
+    const validation = propertyFormSchema.safeParse(formData);
+    if (!validation.success) {
+      const errors: Record<string, string> = {};
+      validation.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          errors[err.path[0] as string] = err.message;
+        }
+      });
+      setValidationErrors(errors);
+      toast({ 
+        title: "Validasi Gagal", 
+        description: "Periksa kembali data yang Anda masukkan", 
+        variant: "destructive" 
+      });
+      return;
+    }
+    
     setSubmitting(true);
+    
+    // Check rate limit before submitting
+    const rateLimitResult = await checkRateLimit("property", user.id);
+    if (!rateLimitResult.allowed) {
+      setSubmitting(false);
+      toast({ 
+        title: "Terlalu Banyak Permintaan", 
+        description: `Silakan coba lagi dalam ${rateLimitResult.retryAfter} detik`, 
+        variant: "destructive" 
+      });
+      return;
+    }
+    
+    const priceValue = parsePriceToNumber(formData.price);
     
     const { error } = await supabase.from("properties").insert({
       user_id: user.id,
-      title: formData.title,
-      description: formData.description,
-      price: parseInt(formData.price.replace(/\D/g, "")) || 0,
+      title: formData.title.trim(),
+      description: formData.description?.trim() || null,
+      price: priceValue,
       property_type: formData.property_type,
       certificate_type: formData.certificate_type || null,
-      address: formData.address,
-      city: formData.city,
+      address: formData.address.trim(),
+      city: formData.city.trim(),
       province: formData.province,
-      postal_code: formData.postal_code,
-      land_size: parseInt(formData.land_size) || null,
-      building_size: parseInt(formData.building_size) || null,
-      bedrooms: parseInt(formData.bedrooms) || null,
-      bathrooms: parseInt(formData.bathrooms) || null,
-      floors: parseInt(formData.floors) || null,
-      year_built: parseInt(formData.year_built) || null,
-      zoning_info: formData.zoning_info || null,
+      postal_code: formData.postal_code?.trim() || null,
+      land_size: formData.land_size ? parseInt(formData.land_size) : null,
+      building_size: formData.building_size ? parseInt(formData.building_size) : null,
+      bedrooms: formData.bedrooms ? parseInt(formData.bedrooms) : null,
+      bathrooms: formData.bathrooms ? parseInt(formData.bathrooms) : null,
+      floors: formData.floors ? parseInt(formData.floors) : null,
+      year_built: formData.year_built ? parseInt(formData.year_built) : null,
+      zoning_info: formData.zoning_info?.trim() || null,
     });
 
     setSubmitting(false);
