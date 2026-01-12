@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShieldCheck, ChevronDown, User } from "lucide-react";
+import { Menu, X, ChevronDown, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import myPropertyLogo from "@/assets/myproperty-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +29,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary">
-              <ShieldCheck className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground">MyProperty</span>
+            <img 
+              src={myPropertyLogo} 
+              alt="MyProperty Logo" 
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
