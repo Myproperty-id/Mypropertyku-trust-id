@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Instagram } from "lucide-react";
 import myPropertyLogo from "@/assets/myproperty-logo.png";
 
 const Footer = () => {
@@ -32,6 +32,28 @@ const Footer = () => {
                 <MapPin className="w-4 h-4" />
                 <span>Jakarta, Indonesia</span>
               </div>
+            </div>
+            
+            {/* Social Links */}
+            <div className="flex items-center gap-3 mt-4">
+              <a 
+                href="https://mypropertyku.lovable.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
+                aria-label="Website"
+              >
+                <Globe className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.instagram.com/myproperty_land/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
             </div>
           </div>
 

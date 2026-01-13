@@ -167,7 +167,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Link to="/admin/verifications" className="bg-card rounded-xl border border-border p-5 hover:shadow-md transition-shadow group">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -175,8 +175,8 @@ const AdminDashboard = () => {
                   <ClipboardList className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Verifikasi Properti</h3>
-                  <p className="text-sm text-muted-foreground">Kelola permintaan verifikasi</p>
+                  <h3 className="font-semibold text-foreground">Verifikasi</h3>
+                  <p className="text-sm text-muted-foreground">Kelola verifikasi</p>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -190,8 +190,23 @@ const AdminDashboard = () => {
                   <Users className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Kelola Pengguna</h3>
-                  <p className="text-sm text-muted-foreground">Lihat dan kelola pengguna</p>
+                  <h3 className="font-semibold text-foreground">Pengguna</h3>
+                  <p className="text-sm text-muted-foreground">Kelola pengguna</p>
+                </div>
+              </div>
+              <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+            </div>
+          </Link>
+
+          <Link to="/admin/analytics" className="bg-card rounded-xl border border-border p-5 hover:shadow-md transition-shadow group">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-warning/10 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-warning" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">Analitik</h3>
+                  <p className="text-sm text-muted-foreground">Statistik platform</p>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -206,7 +221,7 @@ const AdminDashboard = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Audit Log</h3>
-                  <p className="text-sm text-muted-foreground">Riwayat aktivitas sistem</p>
+                  <p className="text-sm text-muted-foreground">Riwayat aktivitas</p>
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
