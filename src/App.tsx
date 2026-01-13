@@ -22,6 +22,8 @@ import PostProperty from "./pages/agent/PostProperty";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminVerifications from "./pages/admin/Verifications";
 import AdminAuditLog from "./pages/admin/AuditLog";
+import AdminUsers from "./pages/admin/Users";
+import AdminAnalytics from "./pages/admin/Analytics";
 import NotFound from "./pages/errors/NotFound";
 import Forbidden from "./pages/errors/Forbidden";
 import ServerError from "./pages/errors/ServerError";
@@ -53,6 +55,8 @@ const App = () => (
             <Route path="/post-property" element={<PostProperty />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/verifications" element={<AdminVerifications />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/analytics" element={<AdminAnalytics />} />
             <Route path="/admin/audit-log" element={<AdminAuditLog />} />
             <Route path="/403" element={<Forbidden />} />
             <Route path="/500" element={<ServerError />} />

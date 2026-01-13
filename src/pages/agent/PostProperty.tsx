@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   Home, MapPin, FileText, Upload, Check, ChevronLeft, ChevronRight,
-  Building2, Ruler, Bed, Bath, Layers, Calendar
+  Building2, Ruler, Bed, Bath, Layers, Calendar, Image as ImageIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +21,7 @@ import Navbar from "@/components/layout/Navbar";
 import { useToast } from "@/hooks/use-toast";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { propertyFormSchema, parsePriceToNumber } from "@/lib/validations/property";
+import FileUploader from "@/components/admin/FileUploader";
 
 type CertificateType = "shm" | "shgb" | "hpl" | "girik" | "ajb" | "ppjb";
 
@@ -51,6 +52,8 @@ const PostProperty = () => {
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [propertyImages, setPropertyImages] = useState<string[]>([]);
+  const [legalDocuments, setLegalDocuments] = useState<string[]>([]);
   const [formData, setFormData] = useState<PropertyData>({
     title: "",
     description: "",
@@ -168,6 +171,7 @@ const PostProperty = () => {
       floors: formData.floors ? parseInt(formData.floors) : null,
       year_built: formData.year_built ? parseInt(formData.year_built) : null,
       zoning_info: formData.zoning_info?.trim() || null,
+      images: propertyImages.length > 0 ? propertyImages : null,
     });
 
     setSubmitting(false);
@@ -471,18 +475,43 @@ const PostProperty = () => {
                 />
               </div>
 
-              <div className="border-2 border-dashed border-border rounded-xl p-8 text-center">
-                <Upload className="w-10 h-10 text-muted-foreground mx-auto mb-4" />
-                <h3 className="font-medium text-foreground mb-2">Upload Dokumen</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Seret file atau klik untuk memilih dokumen (PDF, JPG, PNG)
+              {/* Property Images Upload */}
+              <div>
+                <Label className="flex items-center gap-2 mb-3">
+                  <ImageIcon className="w-4 h-4" />
+                  Foto Properti
+                </Label>
+                {user && (
+                  <FileUploader
+                    bucket="property-images"
+                    userId={user.id}
+                    onUploadComplete={setPropertyImages}
+                    maxFiles={10}
+                    maxSizeInMB={5}
+                    acceptedTypes={["image/jpeg", "image/png", "image/webp"]}
+                  />
+                )}
+              </div>
+
+              {/* Legal Documents Upload */}
+              <div>
+                <Label className="flex items-center gap-2 mb-3">
+                  <FileText className="w-4 h-4" />
+                  Dokumen Legalitas (Opsional)
+                </Label>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Upload sertifikat, IMB, atau dokumen pendukung lainnya
                 </p>
-                <Button variant="outline" disabled>
-                  Pilih File
-                </Button>
-                <p className="text-xs text-muted-foreground mt-2">
-                  Fitur upload akan tersedia setelah storage diaktifkan
-                </p>
+                {user && (
+                  <FileUploader
+                    bucket="legal-documents"
+                    userId={user.id}
+                    onUploadComplete={setLegalDocuments}
+                    maxFiles={5}
+                    maxSizeInMB={10}
+                    acceptedTypes={["application/pdf", "image/jpeg", "image/png"]}
+                  />
+                )}
               </div>
             </div>
           )}
