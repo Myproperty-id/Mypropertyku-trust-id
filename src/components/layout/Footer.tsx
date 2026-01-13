@@ -1,20 +1,14 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Globe, Instagram } from "lucide-react";
 import myPropertyLogo from "@/assets/myproperty-logo.png";
-
 const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground">
+  return <footer className="bg-primary text-primary-foreground">
       <div className="container-main py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <img 
-                src={myPropertyLogo} 
-                alt="MyProperty Logo" 
-                className="h-10 w-auto object-contain brightness-0 invert"
-              />
+              <img src={myPropertyLogo} alt="MyProperty Logo" className="h-10 w-auto object-contain brightness-0 invert" />
             </Link>
             <p className="text-sm text-primary-foreground/70 mb-6">
               Marketplace properti aman dan terverifikasi di Indonesia. Cek legalitas, kurangi risiko sengketa.
@@ -26,32 +20,20 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+62 21 1234 5678</span>
+                <span>+6289636981105</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                <span>Jakarta, Indonesia</span>
+                <span>Bekasi, Indonesia</span>
               </div>
             </div>
             
             {/* Social Links */}
             <div className="flex items-center gap-3 mt-4">
-              <a 
-                href="https://mypropertyku.lovable.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
-                aria-label="Website"
-              >
+              <a href="https://mypropertyku.lovable.app/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors" aria-label="Website">
                 <Globe className="w-4 h-4" />
               </a>
-              <a 
-                href="https://www.instagram.com/myproperty_land/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
-                aria-label="Instagram"
-              >
+              <a href="https://www.instagram.com/myproperty_land/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors" aria-label="Instagram">
                 <Instagram className="w-4 h-4" />
               </a>
             </div>
@@ -95,15 +77,11 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-primary-foreground/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
-            <p>© 2025 MyProperty. Hak cipta dilindungi undang-undang.</p>
-            <p className="text-xs">
-              Disclaimer: MyProperty tidak menjamin kepemilikan atau legalitas properti. Selalu lakukan verifikasi mandiri.
-            </p>
+            <p>© 2025 Myproperty. Hak cipta dilindungi undang-undang.</p>
+            <p className="text-xs">Disclaimer: Myproperty tidak menjamin kepemilikan atau legalitas properti. Selalu lakukan verifikasi mandiri.</p>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
