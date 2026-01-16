@@ -1,73 +1,99 @@
-# Welcome to your Lovable project
+<h1 align="center">🏡 MyProperty</h1>
+<h3 align="center">Modern Digital Property Platform</h3>
 
-## Project info
+<p align="center">
+  Discover • Compare • Trust Your Property Decision
+</p>
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+<p align="center">
+  <a href="https://mypropertyku.lovable.app">🌐 Live Website</a>
+</p>
 
-## How can I edit this code?
+<img align="right" width="320" alt="myproperty-ui" src="https://raw.githubusercontent.com/FujiAr/homepage/main/giphy-downsized-large.gif">
 
-There are several ways of editing your application.
+<p align="left">
+  <img src="https://komarev.com/ghpvc/?username=myproperty&label=Project%20Views&color=E74C3C&style=flat" />
+</p>
 
-**Use Lovable**
+![GitHub Repo stars](https://img.shields.io/github/stars/FujiAr/myproperty?style=social)
+![GitHub forks](https://img.shields.io/github/forks/FujiAr/myproperty?style=social)
+![License](https://img.shields.io/github/license/FujiAr/myproperty)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🧭 Project Overview
 
-**Use your preferred IDE**
+**MyProperty** adalah platform properti digital yang dirancang untuk menghadirkan  
+**pengalaman pencarian properti yang bersih, cepat, dan terpercaya**.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Website ini menampilkan listing properti dengan pendekatan:
+- Visual yang modern & minimal
+- Informasi yang jelas dan mudah dibandingkan
+- Struktur frontend yang siap dikembangkan ke tahap scale & Web3
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+🌐 Website: https://mypropertyku.lovable.app/
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🎯 Design Theme & Direction
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+UI MyProperty mengikuti prinsip:
 
-# Step 3: Install the necessary dependencies.
-npm i
+- 🧼 **Clean Real Estate Design**
+- 🧱 **Card-based Property Listing**
+- 📱 **Mobile-first & Responsive**
+- ⚡ **Fast & Lightweight**
+- 🤝 **Trust-oriented Layout**
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Fokus utama desain adalah **kenyamanan pengguna** dan **kejelasan informasi properti**.
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🖥 Frontend Stack
 
-**Use GitHub Codespaces**
+### Core Technologies
+- **HTML5** – struktur halaman
+- **CSS3** – layout & styling
+- **JavaScript (ES6+)** – interaksi UI
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Styling Concept
+- Custom CSS (tanpa UI framework berat)
+- Flexbox & CSS Grid
+- Neutral color palette + property accent color
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## 🧰 Languages & Tools
+<p align="left"> 
+<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="38" height="38"/></a>
+<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="38" height="38"/></a>
+<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="38" height="38"/></a>
+<a href="#"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" width="38" height="38"/></a>
+<a href="#"><img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" width="38" height="38"/></a>
+<a href="#"><img src="https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg" width="38" height="38"/></a>
+</p>
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 🧩 UI Components Breakdown
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+| Component | Purpose |
+|--------|--------|
+| Navbar | Branding & navigasi utama |
+| Hero Section | Search & headline properti |
+| Property Card | Gambar, harga, lokasi |
+| Search Input | Pencarian cepat properti |
+| Footer | Informasi & legal |
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 📁 Project Structure
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```text
+myproperty/
+├── index.html        # Main landing page
+├── styles.css        # UI & layout styling
+├── script.js         # UI logic & interaction
+├── assets/
+│   └── images/
+└── README.md
