@@ -100,27 +100,38 @@ const AdminVerifications = () => {
     
     setProcessing(true);
     
-    const newStatus = actionType === "approve" ? "approved" : "rejected";
-    const riskLevel = actionType === "approve" ? "low" : null;
-    
-    const { error } = await supabase
-      .from("properties")
-      .update({
-        verification_status: newStatus,
-        risk_level: riskLevel,
-        risk_notes: notes || null,
-        is_published: actionType === "approve",
-      })
-      .eq("id", selectedProperty.id);
+    try {
+      // Use the secure edge function for admin verification
+      const { data: sessionData } = await supabase.auth.getSession();
+      const accessToken = sessionData.session?.access_token;
+      
+      if (!accessToken) {
+        toast({ title: "Error", description: "Sesi tidak valid. Silakan login kembali.", variant: "destructive" });
+        setProcessing(false);
+        return;
+      }
 
-    if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
-    } else {
-      toast({ 
-        title: "Berhasil", 
-        description: `Properti berhasil ${actionType === "approve" ? "disetujui" : "ditolak"}` 
+      const response = await supabase.functions.invoke("admin-verify-property", {
+        body: {
+          action: actionType,
+          property_id: selectedProperty.id,
+          notes: notes || undefined,
+        },
       });
-      fetchProperties();
+
+      if (response.error) {
+        toast({ title: "Error", description: response.error.message, variant: "destructive" });
+      } else if (response.data?.error) {
+        toast({ title: "Error", description: response.data.error, variant: "destructive" });
+      } else {
+        toast({ 
+          title: "Berhasil", 
+          description: `Properti berhasil ${actionType === "approve" ? "disetujui" : "ditolak"}` 
+        });
+        fetchProperties();
+      }
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message || "Terjadi kesalahan", variant: "destructive" });
     }
 
     setProcessing(false);
