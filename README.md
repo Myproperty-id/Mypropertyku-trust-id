@@ -2,66 +2,83 @@
 <h3 align="center">Digital Property Listing Platform</h3>
 
 <p align="center">
-A modern and clean property platform designed to simplify property discovery,
-comparison, and presentation through a scalable frontend architecture.
+A modern property platform focused on clarity, trust, and scalable frontend architecture
 </p>
 
 <p align="center">
-Live Website: https://mypropertyku.lovable.app/
+<a href="https://mypropertyku.lovable.app">Live Website</a>
+</p>
+
+<img align="right" alt="property-ui" width="300" src="https://raw.githubusercontent.com/FujiAr/homepage/main/giphy-downsized-large.gif">
+
+<p align="left">
+  <img src="https://komarev.com/ghpvc/?username=myproperty&label=Repository%20Views&color=E74C3C&style=flat" />
+</p>
+
+![](https://visitor-badge.laobi.icu/badge?page_id=MyProperty.MyProperty)
+![GitHub stars](https://img.shields.io/github/stars/FujiAr/myproperty?style=social)
+![GitHub forks](https://img.shields.io/github/forks/FujiAr/myproperty?style=social)
+![License](https://img.shields.io/github/license/FujiAr/myproperty)
+
+---
+
+## About MyProperty
+
+MyProperty is a digital real estate platform designed to simplify how users
+discover, compare, and understand property listings.
+
+The platform emphasizes clean UI, structured data presentation, and
+frontend scalability, making it suitable for MVP development, public demos,
+and future backend or Web3 integrations.
+
+---
+
+## Platform Focus
+
+- Clean and minimal property-oriented interface  
+- Clear hierarchy of pricing, location, and details  
+- Card-based listing layout  
+- Mobile-first and responsive design  
+- Performance-focused frontend structure  
+
+---
+
+## Frontend Stack
+
+### Core Languages
+- HTML5  
+- CSS3  
+- JavaScript (ES6+)  
+
+### Styling Strategy
+- Custom CSS without heavy frameworks  
+- Flexbox and CSS Grid  
+- Neutral color palette aligned with real estate products  
+- Consistent spacing and typography  
+
+---
+
+## Languages & Tools
+<p align="left"> 
+<a href="https://html.spec.whatwg.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="40" height="40"/></a>
+<a href="https://www.w3.org/TR/CSS/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="40" height="40"/></a>
+<a href="https://www.javascript.com" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="40" height="40"/></a>
+<a href="https://reactjs.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" width="40" height="40"/></a>
+<a href="https://tailwindcss.com" target="_blank"><img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" width="40" height="40"/></a>
+<a href="https://nodejs.org" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" width="40" height="40"/></a>
+<a href="https://vercel.com" target="_blank"><img src="https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg" width="40" height="40"/></a>
 </p>
 
 ---
 
-## Overview
+## Core Features
 
-MyProperty is a digital real estate platform focused on delivering a clean,
-structured, and user-friendly property browsing experience.
-
-The platform is designed with clarity and trust as core principles, enabling
-users to explore property listings efficiently while providing a foundation
-for future data verification and advanced integrations.
-
----
-
-## Design Principles
-
-The visual and structural design of MyProperty follows these principles:
-
-- Clean and minimal real estate interface  
-- Clear hierarchy of property information  
-- Card-based listing layout  
-- Responsive and mobile-first design  
-- Performance-oriented frontend  
-
-The goal is to reduce friction in property exploration and present information
-in a way that feels reliable and easy to understand.
-
----
-
-## Frontend Technology
-
-### Core Languages
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-
-### Styling Approach
-- Custom CSS without heavy UI frameworks
-- Flexbox and CSS Grid for layout
-- Neutral color palette aligned with property themes
-- Consistent spacing and typography
-
----
-
-## UI Components
-
-| Component        | Description                                  |
-|------------------|----------------------------------------------|
-| Navigation Bar   | Branding and primary navigation              |
-| Hero Section     | Main headline and property search             |
-| Property Cards   | Image, price, location, and summary details  |
-| Search Input     | Client-side property filtering               |
-| Footer           | Branding and legal information                |
+| Feature | Description |
+|------|-------------|
+| Property Listing | Display property cards with images and pricing |
+| Search Input | Client-side filtering for faster discovery |
+| Responsive Layout | Optimized for mobile and desktop |
+| Clean UI | Focus on clarity and readability |
 
 ---
 
@@ -70,8 +87,8 @@ in a way that feels reliable and easy to understand.
 ```text
 myproperty/
 ├── index.html        Main landing page
-├── styles.css        Global styles and layout
+├── styles.css        Global styling and layout
 ├── script.js         UI interaction logic
 ├── assets/
-│   └── images/       Property and layout images
+│   └── images/       Property and layout assets
 └── README.md
