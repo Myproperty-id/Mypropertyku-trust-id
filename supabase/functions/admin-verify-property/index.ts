@@ -93,15 +93,16 @@ serve(async (req) => {
     const newStatus = action === 'approve' ? 'approved' : 'rejected';
     const updateData: Record<string, any> = {
       verification_status: newStatus,
+      is_published: action === 'approve', // Set true if approved, false if rejected
+      updated_at: new Date().toISOString(),
     };
-
-    if (action === 'approve') {
-      updateData.is_published = true;
-    }
 
     if (notes) {
       updateData.risk_notes = notes;
     }
+
+    console.log(`Processing ${action} for property ${property_id} by admin ${user.id}`);
+    console.log('Update data:', JSON.stringify(updateData));
 
     // Update the property
     const { data: updatedProperty, error: updateError } = await supabaseAdmin
