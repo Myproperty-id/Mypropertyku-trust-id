@@ -106,7 +106,12 @@ const Login = () => {
               </div>
 
               <div>
-                <Label htmlFor="password">Kata Sandi</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Kata Sandi</Label>
+                  <Link to="/forgot-password" className="text-sm text-primary hover:underline">
+                    Lupa kata sandi?
+                  </Link>
+                </div>
                 <div className="relative mt-1.5">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input 
