@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <img src={myPropertyLogo} alt="MyProperty Logo" className="h-10 w-auto object-contain brightness-0 invert" />
+              <img alt="MyProperty Logo" className="h-10 w-auto object-contain brightness-0 invert" src="/lovable-uploads/0a2d5697-bdff-4bbb-b2c3-4d92eeea577e.png" />
             </Link>
             <p className="text-sm text-primary-foreground/70 mb-6">
               Marketplace properti aman dan terverifikasi di Indonesia. Cek legalitas, kurangi risiko sengketa.
@@ -77,8 +77,8 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-primary-foreground/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
-            <p>© 2025 Myproperty. Hak cipta dilindungi undang-undang.</p>
-            <p className="text-xs">Disclaimer: Myproperty tidak menjamin kepemilikan atau legalitas properti. Selalu lakukan verifikasi mandiri.</p>
+            <p>© 2025 Mypropertyku. Hak cipta dilindungi undang-undang.</p>
+            <p className="text-xs">Disclaimer: Mypropertyku tidak menjamin kepemilikan atau legalitas properti. Selalu lakukan verifikasi mandiri.</p>
           </div>
         </div>
       </div>
