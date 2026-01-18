@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Bed, Bath, Maximize, ShieldCheck, ArrowRight } from "lucide-react";
+import { MapPin, Bed, Bath, Maximize, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -80,9 +80,9 @@ const FeaturedListings = () => {
 
   if (loading) {
     return (
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28 section-gradient">
         <div className="container-main">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-12">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 md:mb-16">
             <div>
               <Skeleton className="h-8 w-48 mb-4" />
               <Skeleton className="h-10 w-64 mb-2" />
@@ -93,7 +93,7 @@ const FeaturedListings = () => {
             {[1, 2, 3].map((i) => (
               <div key={i} className="card-property">
                 <Skeleton className="aspect-[4/3] w-full" />
-                <div className="p-5">
+                <div className="p-6">
                   <Skeleton className="h-8 w-32 mb-2" />
                   <Skeleton className="h-6 w-full mb-2" />
                   <Skeleton className="h-4 w-48 mb-4" />
@@ -117,24 +117,28 @@ const FeaturedListings = () => {
   }
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="container-main">
+    <section className="py-20 md:py-28 section-gradient relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-20 right-0 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
+
+      <div className="container-main relative">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 md:mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6">
               <ShieldCheck className="w-4 h-4" />
               Properti Terverifikasi
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-              Properti Unggulan
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-3">
+              Properti <span className="text-accent">Unggulan</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl">
+            <p className="text-lg text-muted-foreground max-w-xl">
               Properti pilihan yang telah terverifikasi oleh tim kami dengan status hukum yang jelas.
             </p>
           </div>
           <Link to="/listings">
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 font-semibold" size="lg">
               Lihat Semua
               <ArrowRight className="w-4 h-4" />
             </Button>
@@ -154,18 +158,21 @@ const FeaturedListings = () => {
                 <img
                   src={property.images?.[0] || fallbackImages[index % fallbackImages.length]}
                   alt={property.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-                  <Badge className="bg-accent text-accent-foreground gap-1">
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                  <Badge className="bg-accent text-accent-foreground gap-1 font-semibold shadow-lg">
                     <ShieldCheck className="w-3 h-3" />
                     Verified
                   </Badge>
-                  <Badge variant="secondary">{property.property_type}</Badge>
+                  <Badge variant="secondary" className="font-semibold shadow-lg">{property.property_type}</Badge>
                 </div>
                 {property.certificate_type && (
-                  <div className="absolute top-3 right-3">
-                    <Badge variant="outline" className="bg-card/90 backdrop-blur-sm">
+                  <div className="absolute top-4 right-4">
+                    <Badge variant="outline" className="bg-card/95 backdrop-blur-sm font-semibold shadow-lg">
                       {getCertificateLabel(property.certificate_type)}
                     </Badge>
                   </div>
@@ -173,39 +180,39 @@ const FeaturedListings = () => {
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-2xl font-bold text-primary">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-2xl font-extrabold text-primary">
                     Rp {property.price.toLocaleString("id-ID")}
                   </p>
                   {getRiskBadge(property.risk_level)}
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
                   {property.title}
                 </h3>
-                <div className="flex items-center gap-1.5 text-muted-foreground mb-4">
+                <div className="flex items-center gap-1.5 text-muted-foreground mb-5">
                   <MapPin className="w-4 h-4" />
-                  <span className="text-sm">{property.city}, {property.province}</span>
+                  <span className="text-sm font-medium">{property.city}, {property.province}</span>
                 </div>
 
                 {/* Features */}
-                <div className="flex items-center gap-4 pt-4 border-t border-border">
+                <div className="flex items-center gap-5 pt-5 border-t border-border">
                   {property.bedrooms && (
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                       <Bed className="w-4 h-4" />
-                      <span>{property.bedrooms} KT</span>
+                      <span className="font-medium">{property.bedrooms} KT</span>
                     </div>
                   )}
                   {property.bathrooms && (
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                       <Bath className="w-4 h-4" />
-                      <span>{property.bathrooms} KM</span>
+                      <span className="font-medium">{property.bathrooms} KM</span>
                     </div>
                   )}
                   {property.building_size && (
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                       <Maximize className="w-4 h-4" />
-                      <span>{property.building_size} m²</span>
+                      <span className="font-medium">{property.building_size} m²</span>
                     </div>
                   )}
                 </div>
