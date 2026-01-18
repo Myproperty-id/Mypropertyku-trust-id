@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Bed, Bath, Maximize, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
+import { MapPin, Bed, Bath, Maximize, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
+import { PropertyCardSkeleton } from "@/components/ui/loading-skeleton";
 import property1 from "@/assets/property-1.jpg";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
@@ -26,6 +26,94 @@ interface Property {
   certificate_type: string | null;
   risk_level: string | null;
 }
+
+// Demo properties for display when no real data exists
+const DEMO_PROPERTIES: Property[] = [
+  {
+    id: "demo-1",
+    title: "Villa Mewah di SCBD",
+    city: "Jakarta Selatan",
+    province: "DKI Jakarta",
+    price: 15000000000,
+    images: null,
+    bedrooms: 5,
+    bathrooms: 4,
+    building_size: 450,
+    property_type: "Villa",
+    certificate_type: "shm",
+    risk_level: "low",
+  },
+  {
+    id: "demo-2",
+    title: "Apartemen Mewah Jakarta Selatan",
+    city: "Jakarta Selatan",
+    province: "DKI Jakarta",
+    price: 3500000000,
+    images: null,
+    bedrooms: 3,
+    bathrooms: 2,
+    building_size: 180,
+    property_type: "Apartemen",
+    certificate_type: "shgb",
+    risk_level: "low",
+  },
+  {
+    id: "demo-3",
+    title: "Villa Premium Bali",
+    city: "Badung",
+    province: "Bali",
+    price: 8500000000,
+    images: null,
+    bedrooms: 4,
+    bathrooms: 3,
+    building_size: 320,
+    property_type: "Villa",
+    certificate_type: "shm",
+    risk_level: "low",
+  },
+  {
+    id: "demo-4",
+    title: "Rumah Modern Jakarta Barat",
+    city: "Jakarta Barat",
+    province: "DKI Jakarta",
+    price: 2800000000,
+    images: null,
+    bedrooms: 4,
+    bathrooms: 3,
+    building_size: 200,
+    property_type: "Rumah",
+    certificate_type: "shm",
+    risk_level: "low",
+  },
+  {
+    id: "demo-5",
+    title: "Apartemen View Laut Bali",
+    city: "Denpasar",
+    province: "Bali",
+    price: 5200000000,
+    images: null,
+    bedrooms: 2,
+    bathrooms: 2,
+    building_size: 120,
+    property_type: "Apartemen",
+    certificate_type: "shgb",
+    risk_level: "low",
+  },
+  {
+    id: "demo-6",
+    title: "Rumah Cluster Tangerang",
+    city: "Tangerang",
+    province: "Banten",
+    price: 1850000000,
+    images: null,
+    bedrooms: 3,
+    bathrooms: 2,
+    building_size: 150,
+    property_type: "Rumah",
+    certificate_type: "shm",
+    risk_level: "low",
+  },
+];
 
 const getRiskBadge = (level: string | null) => {
   switch (level) {
@@ -60,6 +148,9 @@ const FeaturedListings = () => {
     const fetchApprovedProperties = async () => {
       setLoading(true);
       
+      // Simulate loading delay for demo
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      
       // Only fetch approved and published properties
       const { data, error } = await supabase
         .from("properties")
@@ -69,8 +160,11 @@ const FeaturedListings = () => {
         .order("created_at", { ascending: false })
         .limit(6);
 
-      if (!error && data) {
+      if (!error && data && data.length > 0) {
         setProperties(data);
+      } else {
+        // Use demo properties if no real data
+        setProperties(DEMO_PROPERTIES);
       }
       setLoading(false);
     };
@@ -84,36 +178,26 @@ const FeaturedListings = () => {
         <div className="container-main">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 md:mb-16">
             <div>
-              <Skeleton className="h-8 w-48 mb-4" />
-              <Skeleton className="h-10 w-64 mb-2" />
-              <Skeleton className="h-5 w-96" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6">
+                <ShieldCheck className="w-4 h-4" />
+                Properti Terverifikasi
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-3">
+                Properti <span className="text-accent">Unggulan</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-xl">
+                Properti pilihan yang telah terverifikasi oleh tim Mypropertyku dengan status hukum yang jelas.
+              </p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="card-property">
-                <Skeleton className="aspect-[4/3] w-full" />
-                <div className="p-6">
-                  <Skeleton className="h-8 w-32 mb-2" />
-                  <Skeleton className="h-6 w-full mb-2" />
-                  <Skeleton className="h-4 w-48 mb-4" />
-                  <div className="flex gap-4 pt-4 border-t border-border">
-                    <Skeleton className="h-4 w-16" />
-                    <Skeleton className="h-4 w-16" />
-                    <Skeleton className="h-4 w-16" />
-                  </div>
-                </div>
-              </div>
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <PropertyCardSkeleton key={i} />
             ))}
           </div>
         </div>
       </section>
     );
-  }
-
-  // Show nothing if no approved properties yet
-  if (properties.length === 0) {
-    return null;
   }
 
   return (
@@ -134,7 +218,7 @@ const FeaturedListings = () => {
               Properti <span className="text-accent">Unggulan</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl">
-              Properti pilihan yang telah terverifikasi oleh tim kami dengan status hukum yang jelas.
+              Properti pilihan yang telah terverifikasi oleh tim Mypropertyku dengan status hukum yang jelas.
             </p>
           </div>
           <Link to="/listings">
@@ -150,8 +234,13 @@ const FeaturedListings = () => {
           {properties.map((property, index) => (
             <Link
               key={property.id}
-              to={`/property/${property.id}`}
+              to={property.id.startsWith("demo-") ? "#" : `/property/${property.id}`}
               className="card-property group"
+              onClick={(e) => {
+                if (property.id.startsWith("demo-")) {
+                  e.preventDefault();
+                }
+              }}
             >
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -168,11 +257,11 @@ const FeaturedListings = () => {
                     <ShieldCheck className="w-3 h-3" />
                     Verified
                   </Badge>
-                  <Badge variant="secondary" className="font-semibold shadow-lg">{property.property_type}</Badge>
+                  <Badge variant="secondary" className="font-semibold shadow-lg bg-secondary text-secondary-foreground">{property.property_type}</Badge>
                 </div>
                 {property.certificate_type && (
                   <div className="absolute top-4 right-4">
-                    <Badge variant="outline" className="bg-card/95 backdrop-blur-sm font-semibold shadow-lg">
+                    <Badge variant="outline" className="bg-card/95 backdrop-blur-sm font-semibold shadow-lg border-border">
                       {getCertificateLabel(property.certificate_type)}
                     </Badge>
                   </div>
