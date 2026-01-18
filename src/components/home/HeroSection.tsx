@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin, Home, TrendingUp, Shield, CheckCircle, Building2, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -11,6 +10,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCountUp } from "@/hooks/useCountUp";
+
+// Indonesian locations for the dropdown
+const INDONESIAN_LOCATIONS = [
+  { value: "jakarta-selatan", label: "Jakarta Selatan" },
+  { value: "jakarta-barat", label: "Jakarta Barat" },
+  { value: "jakarta-pusat", label: "Jakarta Pusat" },
+  { value: "jakarta-timur", label: "Jakarta Timur" },
+  { value: "jakarta-utara", label: "Jakarta Utara" },
+  { value: "bandung", label: "Bandung" },
+  { value: "surabaya", label: "Surabaya" },
+  { value: "bali", label: "Bali" },
+  { value: "yogyakarta", label: "Yogyakarta" },
+  { value: "malang", label: "Malang" },
+  { value: "tangerang", label: "Tangerang" },
+  { value: "bekasi", label: "Bekasi" },
+  { value: "karawang", label: "Karawang" },
+  { value: "bogor", label: "Bogor" },
+  { value: "semarang", label: "Semarang" },
+];
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -79,26 +97,30 @@ const HeroSection = () => {
 
             {/* Subtext */}
             <p className="text-lg md:text-xl text-primary-foreground/75 mb-8 max-w-xl animate-fade-in leading-relaxed">
-              Cek legalitas, kurangi risiko sengketa, dan transaksi lebih aman. Semua properti diverifikasi oleh tim ahli kami.
+              Cek legalitas, kurangi risiko sengketa, dan transaksi lebih aman. Semua properti diverifikasi oleh tim ahli Mypropertyku.
             </p>
 
             {/* Search Box */}
             <div className="glass rounded-2xl p-5 md:p-6 shadow-2xl animate-fade-in border border-primary-foreground/10">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                {/* Location */}
+                {/* Location Dropdown */}
                 <div className="md:col-span-1">
                   <label className="text-xs font-semibold text-muted-foreground mb-1.5 block uppercase tracking-wide">
                     Lokasi
                   </label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Cari lokasi..."
-                      className="pl-10 bg-background/50 border-border/50 focus:bg-background"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                    />
-                  </div>
+                  <Select value={location} onValueChange={setLocation}>
+                    <SelectTrigger className="bg-background/50 border-border/50 focus:bg-background">
+                      <MapPin className="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
+                      <SelectValue placeholder="Pilih lokasi" />
+                    </SelectTrigger>
+                    <SelectContent className="max-h-[300px] bg-card border-border">
+                      {INDONESIAN_LOCATIONS.map((loc) => (
+                        <SelectItem key={loc.value} value={loc.value}>
+                          {loc.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* Property Type */}
@@ -108,10 +130,10 @@ const HeroSection = () => {
                   </label>
                   <Select value={propertyType} onValueChange={setPropertyType}>
                     <SelectTrigger className="bg-background/50 border-border/50 focus:bg-background">
-                      <Home className="w-4 h-4 mr-2 text-muted-foreground" />
+                      <Home className="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
                       <SelectValue placeholder="Pilih tipe" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-card border-border">
                       <SelectItem value="rumah">Rumah</SelectItem>
                       <SelectItem value="apartemen">Apartemen</SelectItem>
                       <SelectItem value="tanah">Tanah</SelectItem>
@@ -128,10 +150,10 @@ const HeroSection = () => {
                   </label>
                   <Select value={priceRange} onValueChange={setPriceRange}>
                     <SelectTrigger className="bg-background/50 border-border/50 focus:bg-background">
-                      <TrendingUp className="w-4 h-4 mr-2 text-muted-foreground" />
+                      <TrendingUp className="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
                       <SelectValue placeholder="Pilih harga" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-card border-border">
                       <SelectItem value="0-500">Di bawah 500 Juta</SelectItem>
                       <SelectItem value="500-1000">500 Juta - 1 Miliar</SelectItem>
                       <SelectItem value="1000-2000">1 - 2 Miliar</SelectItem>
