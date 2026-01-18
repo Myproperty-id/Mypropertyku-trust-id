@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <img alt="MyProperty Logo" className="h-10 w-auto object-contain brightness-0 invert" src="/lovable-uploads/0a2d5697-bdff-4bbb-b2c3-4d92eeea577e.png" />
+              
             </Link>
             <p className="text-sm text-primary-foreground/70 mb-6">
               Marketplace properti aman dan terverifikasi di Indonesia. Cek legalitas, kurangi risiko sengketa.
@@ -41,7 +41,7 @@ const Footer = () => {
 
           {/* Properti */}
           <div>
-            <h4 className="font-semibold mb-4">Properti</h4>
+            <h4 className="font-semibold mb-4 text-primary-foreground">Properti</h4>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               <li><Link to="/listings" className="hover:text-primary-foreground transition-colors">Cari Properti</Link></li>
               <li><Link to="/listings?type=rumah" className="hover:text-primary-foreground transition-colors">Rumah</Link></li>
@@ -53,7 +53,7 @@ const Footer = () => {
 
           {/* Layanan */}
           <div>
-            <h4 className="font-semibold mb-4">Layanan</h4>
+            <h4 className="font-semibold mb-4 text-primary-foreground">Layanan</h4>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               <li><Link to="/post-property" className="hover:text-primary-foreground transition-colors">Pasang Iklan</Link></li>
               <li><Link to="/how-it-works" className="hover:text-primary-foreground transition-colors">Cara Kerja</Link></li>
@@ -64,7 +64,7 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
+            <h4 className="font-semibold mb-4 text-primary-foreground">Legal</h4>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               <li><Link to="/privacy" className="hover:text-primary-foreground transition-colors">Kebijakan Privasi</Link></li>
               <li><Link to="/terms" className="hover:text-primary-foreground transition-colors">Syarat & Ketentuan</Link></li>
@@ -78,7 +78,8 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-primary-foreground/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
             <p>© 2025 Mypropertyku. Hak cipta dilindungi undang-undang.</p>
-            <p className="text-xs">Disclaimer: Mypropertyku tidak menjamin kepemilikan atau legalitas properti. Selalu lakukan verifikasi mandiri.</p>
+            <p className="text-xs">Disclaimer: Mypropertyku tidak menjamin kepemilikan atau legalitas properti. 
+Selalu lakukan verifikasi mandiri dan kami akan memverikasi juga legalitas penjual.</p>
           </div>
         </div>
       </div>
