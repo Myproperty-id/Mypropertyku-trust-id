@@ -21,7 +21,7 @@ const TrustIndicators = () => {
       <div className="container-main">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">Mengapa Myproperty?<ShieldCheck className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">Mengapa Mypropertyku?<ShieldCheck className="w-4 h-4" />
             Mengapa MyProperty?
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
