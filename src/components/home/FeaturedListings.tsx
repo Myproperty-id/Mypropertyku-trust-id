@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { PropertyCardSkeleton } from "@/components/ui/loading-skeleton";
+import { FavoriteButton } from "@/components/property/FavoriteButton";
+import { useFavorites } from "@/hooks/useFavorites";
 import property1 from "@/assets/property-1.jpg";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
@@ -143,6 +145,7 @@ const getCertificateLabel = (type: string | null) => {
 const FeaturedListings = () => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   useEffect(() => {
     const fetchApprovedProperties = async () => {
@@ -259,7 +262,19 @@ const FeaturedListings = () => {
                   </Badge>
                   <Badge variant="secondary" className="font-semibold shadow-lg bg-secondary text-secondary-foreground">{property.property_type}</Badge>
                 </div>
-                {property.certificate_type && (
+                
+                {/* Favorite Button */}
+                {!property.id.startsWith("demo-") && (
+                  <div className="absolute top-4 right-4">
+                    <FavoriteButton
+                      isFavorite={isFavorite(property.id)}
+                      onToggle={() => toggleFavorite(property.id)}
+                      size="sm"
+                    />
+                  </div>
+                )}
+                
+                {property.certificate_type && property.id.startsWith("demo-") && (
                   <div className="absolute top-4 right-4">
                     <Badge variant="outline" className="bg-card/95 backdrop-blur-sm font-semibold shadow-lg border-border">
                       {getCertificateLabel(property.certificate_type)}
