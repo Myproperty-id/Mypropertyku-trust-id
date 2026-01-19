@@ -5,6 +5,8 @@ import TrustIndicators from "@/components/home/TrustIndicators";
 import FeaturedListings from "@/components/home/FeaturedListings";
 import HowItWorks from "@/components/home/HowItWorks";
 import PartnersSection from "@/components/home/PartnersSection";
+import TrustedPartners from "@/components/home/TrustedPartners";
+import AIAssistant from "@/components/home/AIAssistant";
 import CTASection from "@/components/home/CTASection";
 
 const Index = () => {
@@ -15,7 +17,9 @@ const Index = () => {
         <HeroSection />
         <TrustIndicators />
         <FeaturedListings />
+        <AIAssistant />
         <HowItWorks />
+        <TrustedPartners />
         <PartnersSection />
         <CTASection />
       </main>
