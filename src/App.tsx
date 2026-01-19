@@ -19,6 +19,7 @@ import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer";
 import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
+import Favorites from "./pages/Favorites";
 import AgentDashboard from "./pages/agent/Dashboard";
 import PostProperty from "./pages/agent/PostProperty";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="/dashboard" element={<AgentDashboard />} />
             <Route path="/post-property" element={<PostProperty />} />
             <Route path="/admin" element={<AdminDashboard />} />

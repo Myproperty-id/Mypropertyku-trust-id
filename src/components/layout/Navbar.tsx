@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, User, Sun, Moon } from "lucide-react";
+import { Menu, X, ChevronDown, User, Sun, Moon, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/hooks/useTheme";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+  const { user, profile, signOut } = useAuth();
 
   const navLinks = [
     { href: "/", label: "Beranda" },
@@ -66,28 +68,64 @@ const Navbar = () => {
               )}
             </Button>
 
+            {/* Favorites Link - only for logged in users */}
+            {user && (
+              <Link to="/favorites">
+                <Button variant="ghost" size="icon" className="relative">
+                  <Heart className="w-5 h-5" />
+                </Button>
+              </Link>
+            )}
+
             <Link to="/post-property">
               <Button variant="outline" size="sm">
                 Pasang Iklan
               </Button>
             </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-2">
-                  <User className="w-4 h-4" />
-                  Masuk
-                  <ChevronDown className="w-3 h-3" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48 bg-card border-border">
-                <DropdownMenuItem asChild>
-                  <Link to="/login">Masuk</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/register">Daftar</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <User className="w-4 h-4" />
+                    {profile?.full_name || 'Akun'}
+                    <ChevronDown className="w-3 h-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48 bg-card border-border">
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile">Profil Saya</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/favorites">Favorit Saya</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/dashboard">Dashboard</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => signOut()}>
+                    Keluar
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <User className="w-4 h-4" />
+                    Masuk
+                    <ChevronDown className="w-3 h-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48 bg-card border-border">
+                  <DropdownMenuItem asChild>
+                    <Link to="/login">Masuk</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/register">Daftar</Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
 
           {/* Mobile Actions */}
@@ -136,14 +174,40 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="pt-4 mt-2 border-t border-border flex flex-col gap-2 px-4">
+                {user && (
+                  <Link to="/favorites" onClick={() => setIsOpen(false)}>
+                    <Button variant="ghost" className="w-full justify-start gap-2">
+                      <Heart className="w-4 h-4" />
+                      Favorit Saya
+                    </Button>
+                  </Link>
+                )}
                 <Link to="/post-property" onClick={() => setIsOpen(false)}>
                   <Button variant="outline" className="w-full">
                     Pasang Iklan
                   </Button>
                 </Link>
-                <Link to="/login" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full">Masuk</Button>
-                </Link>
+                {user ? (
+                  <>
+                    <Link to="/profile" onClick={() => setIsOpen(false)}>
+                      <Button variant="ghost" className="w-full justify-start gap-2">
+                        <User className="w-4 h-4" />
+                        Profil Saya
+                      </Button>
+                    </Link>
+                    <Button 
+                      variant="destructive" 
+                      className="w-full" 
+                      onClick={() => { signOut(); setIsOpen(false); }}
+                    >
+                      Keluar
+                    </Button>
+                  </>
+                ) : (
+                  <Link to="/login" onClick={() => setIsOpen(false)}>
+                    <Button className="w-full">Masuk</Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
