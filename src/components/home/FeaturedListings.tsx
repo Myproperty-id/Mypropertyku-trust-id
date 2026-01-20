@@ -29,7 +29,7 @@ interface Property {
   risk_level: string | null;
 }
 
-// Demo properties for display when no real data exists
+// Demo properties for display - only 3 for waitlist mode
 const DEMO_PROPERTIES: Property[] = [
   {
     id: "demo-1",
@@ -70,48 +70,6 @@ const DEMO_PROPERTIES: Property[] = [
     bathrooms: 3,
     building_size: 320,
     property_type: "Villa",
-    certificate_type: "shm",
-    risk_level: "low",
-  },
-  {
-    id: "demo-4",
-    title: "Rumah Modern Jakarta Barat",
-    city: "Jakarta Barat",
-    province: "DKI Jakarta",
-    price: 2800000000,
-    images: null,
-    bedrooms: 4,
-    bathrooms: 3,
-    building_size: 200,
-    property_type: "Rumah",
-    certificate_type: "shm",
-    risk_level: "low",
-  },
-  {
-    id: "demo-5",
-    title: "Apartemen View Laut Bali",
-    city: "Denpasar",
-    province: "Bali",
-    price: 5200000000,
-    images: null,
-    bedrooms: 2,
-    bathrooms: 2,
-    building_size: 120,
-    property_type: "Apartemen",
-    certificate_type: "shgb",
-    risk_level: "low",
-  },
-  {
-    id: "demo-6",
-    title: "Rumah Cluster Tangerang",
-    city: "Tangerang",
-    province: "Banten",
-    price: 1850000000,
-    images: null,
-    bedrooms: 3,
-    bathrooms: 2,
-    building_size: 150,
-    property_type: "Rumah",
     certificate_type: "shm",
     risk_level: "low",
   },
@@ -161,7 +119,7 @@ const FeaturedListings = () => {
         .eq("verification_status", "approved")
         .eq("is_published", true)
         .order("created_at", { ascending: false })
-        .limit(6);
+        .limit(3);
 
       if (!error && data && data.length > 0) {
         setProperties(data);
@@ -194,7 +152,7 @@ const FeaturedListings = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {[1, 2, 3].map((i) => (
               <PropertyCardSkeleton key={i} />
             ))}
           </div>
