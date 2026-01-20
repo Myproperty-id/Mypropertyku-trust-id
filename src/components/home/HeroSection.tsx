@@ -2,47 +2,76 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin, Home, TrendingUp, Shield, CheckCircle, Building2, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useCountUp } from "@/hooks/useCountUp";
 import logo from "@/assets/myproperty-logo.png";
 
 // Indonesian locations for the dropdown
-const INDONESIAN_LOCATIONS = [
-  { value: "jakarta-selatan", label: "Jakarta Selatan" },
-  { value: "jakarta-barat", label: "Jakarta Barat" },
-  { value: "jakarta-pusat", label: "Jakarta Pusat" },
-  { value: "jakarta-timur", label: "Jakarta Timur" },
-  { value: "jakarta-utara", label: "Jakarta Utara" },
-  { value: "bandung", label: "Bandung" },
-  { value: "surabaya", label: "Surabaya" },
-  { value: "bali", label: "Bali" },
-  { value: "yogyakarta", label: "Yogyakarta" },
-  { value: "malang", label: "Malang" },
-  { value: "tangerang", label: "Tangerang" },
-  { value: "bekasi", label: "Bekasi" },
-  { value: "karawang", label: "Karawang" },
-  { value: "bogor", label: "Bogor" },
-  { value: "semarang", label: "Semarang" },
-];
-
+const INDONESIAN_LOCATIONS = [{
+  value: "jakarta-selatan",
+  label: "Jakarta Selatan"
+}, {
+  value: "jakarta-barat",
+  label: "Jakarta Barat"
+}, {
+  value: "jakarta-pusat",
+  label: "Jakarta Pusat"
+}, {
+  value: "jakarta-timur",
+  label: "Jakarta Timur"
+}, {
+  value: "jakarta-utara",
+  label: "Jakarta Utara"
+}, {
+  value: "bandung",
+  label: "Bandung"
+}, {
+  value: "surabaya",
+  label: "Surabaya"
+}, {
+  value: "bali",
+  label: "Bali"
+}, {
+  value: "yogyakarta",
+  label: "Yogyakarta"
+}, {
+  value: "malang",
+  label: "Malang"
+}, {
+  value: "tangerang",
+  label: "Tangerang"
+}, {
+  value: "bekasi",
+  label: "Bekasi"
+}, {
+  value: "karawang",
+  label: "Karawang"
+}, {
+  value: "bogor",
+  label: "Bogor"
+}, {
+  value: "semarang",
+  label: "Semarang"
+}];
 const HeroSection = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [priceRange, setPriceRange] = useState("");
-
   const stats = {
-    properties: useCountUp({ end: 10000, suffix: "+" }),
-    verified: useCountUp({ end: 5000, suffix: "+" }),
-    satisfaction: useCountUp({ end: 99, suffix: "%" }),
+    properties: useCountUp({
+      end: 10000,
+      suffix: "+"
+    }),
+    verified: useCountUp({
+      end: 5000,
+      suffix: "+"
+    }),
+    satisfaction: useCountUp({
+      end: 99,
+      suffix: "%"
+    })
   };
-
   const handleSearch = () => {
     const params = new URLSearchParams();
     if (location) params.set("location", location);
@@ -50,9 +79,7 @@ const HeroSection = () => {
     if (priceRange) params.set("price", priceRange);
     navigate(`/listings?${params.toString()}`);
   };
-
-  return (
-    <section className="relative min-h-[700px] md:min-h-[800px] flex items-center overflow-hidden">
+  return <section className="relative min-h-[700px] md:min-h-[800px] flex items-center overflow-hidden">
       {/* Background with gradient */}
       <div className="absolute inset-0 hero-gradient">
         {/* Decorative elements */}
@@ -64,12 +91,9 @@ const HeroSection = () => {
         </div>
         
         {/* Grid pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }} />
       </div>
 
       {/* Content */}
@@ -78,7 +102,7 @@ const HeroSection = () => {
           {/* Left Column - Text Content */}
           <div className="max-w-2xl">
             {/* Logo */}
-            <img src={logo} alt="MyPropertyku" className="h-10 w-auto mb-4 animate-fade-in" />
+            
             
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm mb-6 animate-fade-in border border-accent/30">
@@ -92,7 +116,7 @@ const HeroSection = () => {
               <span className="relative inline-block">
                 <span className="text-accent">Aman</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 8" fill="none">
-                  <path d="M0 4C20 0 40 8 60 4C80 0 100 8 100 4" stroke="hsl(160, 84%, 39%)" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M0 4C20 0 40 8 60 4C80 0 100 8 100 4" stroke="hsl(160, 84%, 39%)" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </span>{" "}
               &{" "}
@@ -118,11 +142,9 @@ const HeroSection = () => {
                       <SelectValue placeholder="Pilih lokasi" />
                     </SelectTrigger>
                     <SelectContent className="max-h-[300px] bg-card border-border">
-                      {INDONESIAN_LOCATIONS.map((loc) => (
-                        <SelectItem key={loc.value} value={loc.value}>
+                      {INDONESIAN_LOCATIONS.map(loc => <SelectItem key={loc.value} value={loc.value}>
                           {loc.label}
-                        </SelectItem>
-                      ))}
+                        </SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -169,11 +191,7 @@ const HeroSection = () => {
 
                 {/* Search Button */}
                 <div className="md:col-span-1 flex items-end">
-                  <Button 
-                    className="w-full h-10 gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg" 
-                    size="lg"
-                    onClick={handleSearch}
-                  >
+                  <Button className="w-full h-10 gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg" size="lg" onClick={handleSearch}>
                     <Search className="w-4 h-4" />
                     Cari Properti
                   </Button>
@@ -249,8 +267,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
