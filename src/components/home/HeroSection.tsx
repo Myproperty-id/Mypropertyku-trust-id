@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCountUp } from "@/hooks/useCountUp";
+import logo from "@/assets/myproperty-logo.png";
 
 // Indonesian locations for the dropdown
 const INDONESIAN_LOCATIONS = [
@@ -76,6 +77,9 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Text Content */}
           <div className="max-w-2xl">
+            {/* Logo */}
+            <img src={logo} alt="MyPropertyku" className="h-10 w-auto mb-4 animate-fade-in" />
+            
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm mb-6 animate-fade-in border border-accent/30">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
