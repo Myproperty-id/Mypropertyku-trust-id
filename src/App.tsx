@@ -22,6 +22,7 @@ import Profile from "./pages/Profile";
 import Favorites from "./pages/Favorites";
 import AgentDashboard from "./pages/agent/Dashboard";
 import PostProperty from "./pages/agent/PostProperty";
+import EditProperty from "./pages/agent/EditProperty";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminVerifications from "./pages/admin/Verifications";
 import AdminAuditLog from "./pages/admin/AuditLog";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/dashboard" element={<AgentDashboard />} />
             <Route path="/post-property" element={<PostProperty />} />
+            <Route path="/edit-property/:id" element={<EditProperty />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/verifications" element={<AdminVerifications />} />
             <Route path="/admin/users" element={<AdminUsers />} />
