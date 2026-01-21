@@ -107,10 +107,7 @@ const HowItWorks = () => {
       <section className="bg-primary py-16 md:py-24">
         <div className="container-main text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">Cara Kerja Mypropertyku</h1>
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            Temukan bagaimana MyProperty membantu Anda bertransaksi properti 
-            dengan lebih aman dan transparan melalui sistem verifikasi terpercaya.
-          </p>
+          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">Temukan bagaimana Mypropertyku membantu Anda bertransaksi properti dengan lebih aman dan transparan melalui sistem verifikasi terpercaya.</p>
         </div>
       </section>
 
@@ -192,10 +189,7 @@ const HowItWorks = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
                 Verifikasi Menyeluruh untuk Keamanan Anda
               </h2>
-              <p className="text-muted-foreground mb-8">
-                Setiap properti di MyProperty melewati proses verifikasi ketat 
-                untuk memastikan legalitas dan mengurangi risiko sengketa.
-              </p>
+              <p className="text-muted-foreground mb-8">Setiap properti di Mypropertyku melewati proses verifikasi ketat untuk memastikan legalitas dan mengurangi risiko sengketa.</p>
               
               <div className="space-y-4">
                 {verificationProcess.map((item, index) => <div key={index} className="flex gap-4">
