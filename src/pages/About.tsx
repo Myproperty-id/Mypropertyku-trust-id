@@ -1,47 +1,45 @@
-import { 
-  Shield, Target, Eye, Users, Building2, CheckCircle2, 
-  Award, TrendingUp, Heart
-} from "lucide-react";
+import { Shield, Target, Eye, Users, Building2, CheckCircle2, Award, TrendingUp, Heart } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const About = () => {
-  const values = [
-    {
-      icon: Shield,
-      title: "Transparansi",
-      description: "Kami percaya setiap transaksi properti harus didasari informasi yang jelas dan terverifikasi."
-    },
-    {
-      icon: CheckCircle2,
-      title: "Kepercayaan",
-      description: "Sistem verifikasi multi-layer kami memastikan setiap listing telah melalui proses pengecekan ketat."
-    },
-    {
-      icon: Heart,
-      title: "Komitmen",
-      description: "Dedikasi penuh untuk melindungi kepentingan pembeli dan penjual dalam setiap transaksi."
-    },
-  ];
-
-  const team = [
-    { name: "Tim Verifikasi", count: "15+", desc: "Profesional legal & properti" },
-    { name: "Properti Terverifikasi", count: "1,000+", desc: "Listings aman & legal" },
-    { name: "Pengguna Terdaftar", count: "10,000+", desc: "Kepercayaan yang terus tumbuh" },
-    { name: "Transaksi Sukses", count: "500+", desc: "Nilai miliaran rupiah" },
-  ];
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
+  const values = [{
+    icon: Shield,
+    title: "Transparansi",
+    description: "Kami percaya setiap transaksi properti harus didasari informasi yang jelas dan terverifikasi."
+  }, {
+    icon: CheckCircle2,
+    title: "Kepercayaan",
+    description: "Sistem verifikasi multi-layer kami memastikan setiap listing telah melalui proses pengecekan ketat."
+  }, {
+    icon: Heart,
+    title: "Komitmen",
+    description: "Dedikasi penuh untuk melindungi kepentingan pembeli dan penjual dalam setiap transaksi."
+  }];
+  const team = [{
+    name: "Tim Verifikasi",
+    count: "15+",
+    desc: "Profesional legal & properti"
+  }, {
+    name: "Properti Terverifikasi",
+    count: "1,000+",
+    desc: "Listings aman & legal"
+  }, {
+    name: "Pengguna Terdaftar",
+    count: "10,000+",
+    desc: "Kepercayaan yang terus tumbuh"
+  }, {
+    name: "Transaksi Sukses",
+    count: "500+",
+    desc: "Nilai miliaran rupiah"
+  }];
+  return <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
       <main className="flex-1">
         {/* Hero Section */}
         <section className="bg-primary py-20">
           <div className="container-main text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-              Tentang MyProperty
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">Tentang Mypropertyku</h1>
             <p className="text-xl text-primary-foreground/80 max-w-3xl mx-auto">
               Platform properti terverifikasi pertama di Indonesia yang mengutamakan 
               keamanan dan transparansi dalam setiap transaksi.
@@ -148,21 +146,17 @@ const About = () => {
         <section className="py-16 md:py-24">
           <div className="container-main">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Mengapa MyProperty Berbeda?
-              </h2>
+              <h2 className="text-3xl font-bold text-foreground mb-4">Mengapa Mypropertyku Berbeda?</h2>
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
-              {values.map((value, index) => (
-                <div key={index} className="text-center">
+              {values.map((value, index) => <div key={index} className="text-center">
                   <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
                     <value.icon className="w-8 h-8 text-accent" />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">{value.title}</h3>
                   <p className="text-muted-foreground">{value.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -171,13 +165,11 @@ const About = () => {
         <section className="py-16 bg-primary">
           <div className="container-main">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {team.map((stat, index) => (
-                <div key={index} className="text-center">
+              {team.map((stat, index) => <div key={index} className="text-center">
                   <p className="text-4xl font-bold text-primary-foreground mb-2">{stat.count}</p>
                   <p className="text-primary-foreground/90 font-medium">{stat.name}</p>
                   <p className="text-primary-foreground/60 text-sm">{stat.desc}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -188,10 +180,7 @@ const About = () => {
             <h2 className="text-3xl font-bold text-foreground mb-4">
               Mulai Pengalaman Properti yang Aman
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Bergabunglah dengan ribuan pengguna yang telah mempercayakan 
-              pencarian properti mereka kepada MyProperty.
-            </p>
+            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">Bergabunglah dengan ribuan pengguna yang telah mempercayakan pencarian properti mereka kepada Mypropertyku.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/listings" className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
                 <TrendingUp className="w-5 h-5" />
@@ -206,8 +195,6 @@ const About = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
