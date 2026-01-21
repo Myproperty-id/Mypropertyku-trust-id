@@ -89,33 +89,10 @@ const TrustedPartners = () => {
       <div className="container-main mt-10">
         <div className="text-center mb-6">
           <h4 className="text-md font-semibold text-foreground">Mitra Kami</h4>
-          <p className="text-sm text-muted-foreground">Ekosistem layanan properti terpadu</p>
+          
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {partnerCategories.map(category => <motion.div key={category.id} className="p-4 rounded-xl bg-background border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg text-center" initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true
-        }} whileHover={{
-          y: -4
-        }}>
-              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                {category.icon}
-              </div>
-              <h5 className="font-semibold text-foreground text-sm mb-1">{category.name}</h5>
-              <p className="text-xs text-muted-foreground mb-2">{category.description}</p>
-              {category.partners.length > 0 ? <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                  {category.partners.length} Partner
-                </span> : <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-muted text-muted-foreground text-xs">
-                  Segera Hadir
-                </span>}
-            </motion.div>)}
-        </div>
+        
 
         {/* Tukang Profesional Card */}
         
