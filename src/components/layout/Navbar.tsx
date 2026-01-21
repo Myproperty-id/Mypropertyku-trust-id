@@ -15,6 +15,7 @@ const Navbar = () => {
   const navLinks = [
     { href: "/", label: "Beranda" },
     { href: "/listings", label: "Cari Properti" },
+    { href: "/partners", label: "Partner" },
     { href: "/how-it-works", label: "Cara Kerja" },
     { href: "/about", label: "Tentang Kami" },
   ];

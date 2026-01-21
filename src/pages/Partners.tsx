@@ -15,7 +15,11 @@ import {
   Wrench,
   PenTool,
   FileText,
-  Building
+  Building,
+  CreditCard,
+  Home,
+  Shield,
+  Percent
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -94,6 +98,13 @@ const Partners = () => {
     { icon: Building, name: "Pembangunan", desc: "Konstruksi bangunan lengkap" },
     { icon: Wrench, name: "Kontraktor", desc: "Layanan kontraktor berpengalaman" },
     { icon: FileText, name: "Perizinan Bangunan", desc: "Pengurusan IMB dan perizinan" }
+  ];
+
+  const bankPartnerServices = [
+    { icon: Home, name: "KPR", desc: "Kredit Pemilikan Rumah" },
+    { icon: CreditCard, name: "Kredit Multiguna", desc: "Pinjaman dengan jaminan properti" },
+    { icon: Shield, name: "Asuransi Properti", desc: "Perlindungan aset properti" },
+    { icon: Percent, name: "Bunga Kompetitif", desc: "Suku bunga bersaing" }
   ];
 
   const ContactForm = ({ category }: { category: string }) => (
@@ -313,11 +324,92 @@ const Partners = () => {
 
             {/* Bank Tab */}
             <TabsContent value="bank">
-              <Card>
-                <CardContent className="p-8">
-                  <ComingSoonCard category={partnerCategories[1]} />
-                </CardContent>
-              </Card>
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Partner Profile */}
+                <Card className="overflow-hidden">
+                  <div className="bg-gradient-to-r from-secondary to-secondary/80 p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-24 h-24 rounded-xl bg-background flex items-center justify-center">
+                        <Landmark className="h-12 w-12 text-secondary" />
+                      </div>
+                      <div className="text-secondary-foreground">
+                        <h2 className="text-2xl font-bold">Partner Bank</h2>
+                        <p className="opacity-90">Solusi Pembiayaan Properti</p>
+                        <Badge className="mt-2 bg-background/20 hover:bg-background/30 text-secondary-foreground">
+                          <CheckCircle2 className="h-3 w-3 mr-1" />
+                          Coming Soon
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <CardContent className="p-6">
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-2">Tentang Layanan</h3>
+                        <p className="text-muted-foreground text-sm">
+                          Kami sedang menjalin kerjasama dengan bank-bank terkemuka di Indonesia 
+                          untuk menyediakan solusi pembiayaan properti yang mudah dan terjangkau. 
+                          Dapatkan KPR dengan suku bunga kompetitif dan proses approval yang cepat.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-3">Layanan Yang Akan Tersedia</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                          {bankPartnerServices.map((service, idx) => (
+                            <div key={idx} className="flex items-start gap-2 p-3 rounded-lg bg-muted/50">
+                              <service.icon className="h-5 w-5 text-secondary mt-0.5" />
+                              <div>
+                                <p className="font-medium text-sm text-foreground">{service.name}</p>
+                                <p className="text-xs text-muted-foreground">{service.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-3">Keuntungan</h3>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Proses pengajuan KPR terintegrasi dengan platform
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Simulasi cicilan real-time
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Perbandingan penawaran dari berbagai bank
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Konsultasi gratis dengan advisor
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Contact Form */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Mail className="h-5 w-5 text-secondary" />
+                      Daftar Notifikasi Partner Bank
+                    </CardTitle>
+                    <CardDescription>
+                      Jadilah yang pertama tahu ketika layanan pembiayaan tersedia
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ContactForm category="bank" />
+                  </CardContent>
+                </Card>
+              </div>
             </TabsContent>
 
             {/* Notaris Tab */}
