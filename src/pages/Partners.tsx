@@ -19,7 +19,15 @@ import {
   CreditCard,
   Home,
   Shield,
-  Percent
+  Percent,
+  Scale,
+  Stamp,
+  BookOpen,
+  ClipboardCheck,
+  MapPinned,
+  FileSearch,
+  FileBadge,
+  Layers
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -105,6 +113,20 @@ const Partners = () => {
     { icon: CreditCard, name: "Kredit Multiguna", desc: "Pinjaman dengan jaminan properti" },
     { icon: Shield, name: "Asuransi Properti", desc: "Perlindungan aset properti" },
     { icon: Percent, name: "Bunga Kompetitif", desc: "Suku bunga bersaing" }
+  ];
+
+  const notarisServices = [
+    { icon: FileText, name: "Akta Jual Beli", desc: "Pembuatan AJB properti" },
+    { icon: Stamp, name: "Legalisasi Dokumen", desc: "Pengesahan dokumen resmi" },
+    { icon: Scale, name: "Konsultasi Hukum", desc: "Advice legal properti" },
+    { icon: BookOpen, name: "PPAT", desc: "Pejabat Pembuat Akta Tanah" }
+  ];
+
+  const bpnServices = [
+    { icon: FileBadge, name: "Sertifikat Tanah", desc: "Penerbitan SHM/SHGB" },
+    { icon: MapPinned, name: "Pengukuran Tanah", desc: "Survei dan pemetaan" },
+    { icon: FileSearch, name: "Pengecekan Status", desc: "Verifikasi kepemilikan" },
+    { icon: Layers, name: "Balik Nama", desc: "Proses transfer kepemilikan" }
   ];
 
   const ContactForm = ({ category }: { category: string }) => (
@@ -414,20 +436,182 @@ const Partners = () => {
 
             {/* Notaris Tab */}
             <TabsContent value="notaris">
-              <Card>
-                <CardContent className="p-8">
-                  <ComingSoonCard category={partnerCategories[2]} />
-                </CardContent>
-              </Card>
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Partner Profile */}
+                <Card className="overflow-hidden">
+                  <div className="bg-gradient-to-r from-accent to-accent/80 p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-24 h-24 rounded-xl bg-background flex items-center justify-center">
+                        <FileCheck className="h-12 w-12 text-accent-foreground" />
+                      </div>
+                      <div className="text-accent-foreground">
+                        <h2 className="text-2xl font-bold">Partner Notaris</h2>
+                        <p className="opacity-90">Layanan Legalitas Properti</p>
+                        <Badge className="mt-2 bg-background/20 hover:bg-background/30 text-accent-foreground">
+                          <CheckCircle2 className="h-3 w-3 mr-1" />
+                          Coming Soon
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <CardContent className="p-6">
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-2">Tentang Layanan</h3>
+                        <p className="text-muted-foreground text-sm">
+                          Kami sedang menjalin kerjasama dengan notaris dan PPAT berpengalaman 
+                          untuk menyediakan layanan legalitas properti yang aman dan terpercaya. 
+                          Pastikan transaksi properti Anda dilindungi secara hukum dengan dokumen yang sah.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-3">Layanan Yang Akan Tersedia</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                          {notarisServices.map((service, idx) => (
+                            <div key={idx} className="flex items-start gap-2 p-3 rounded-lg bg-muted/50">
+                              <service.icon className="h-5 w-5 text-primary mt-0.5" />
+                              <div>
+                                <p className="font-medium text-sm text-foreground">{service.name}</p>
+                                <p className="text-xs text-muted-foreground">{service.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-3">Keuntungan</h3>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Notaris bersertifikat dan berpengalaman
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Proses dokumen terintegrasi dengan platform
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Tracking status dokumen real-time
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Konsultasi hukum properti gratis
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Contact Form */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Mail className="h-5 w-5 text-primary" />
+                      Daftar Notifikasi Partner Notaris
+                    </CardTitle>
+                    <CardDescription>
+                      Jadilah yang pertama tahu ketika layanan notaris tersedia
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ContactForm category="notaris" />
+                  </CardContent>
+                </Card>
+              </div>
             </TabsContent>
 
             {/* BPN Tab */}
             <TabsContent value="bpn">
-              <Card>
-                <CardContent className="p-8">
-                  <ComingSoonCard category={partnerCategories[3]} />
-                </CardContent>
-              </Card>
+              <div className="grid lg:grid-cols-2 gap-8">
+                {/* Partner Profile */}
+                <Card className="overflow-hidden">
+                  <div className="bg-gradient-to-r from-muted to-muted/80 p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-24 h-24 rounded-xl bg-background flex items-center justify-center">
+                        <Building2 className="h-12 w-12 text-muted-foreground" />
+                      </div>
+                      <div className="text-foreground">
+                        <h2 className="text-2xl font-bold">Partner BPN</h2>
+                        <p className="text-muted-foreground">Badan Pertanahan Nasional</p>
+                        <Badge className="mt-2 bg-background/50 hover:bg-background/60 text-foreground">
+                          <CheckCircle2 className="h-3 w-3 mr-1" />
+                          Coming Soon
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <CardContent className="p-6">
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-2">Tentang Layanan</h3>
+                        <p className="text-muted-foreground text-sm">
+                          Kami sedang membangun integrasi dengan layanan BPN untuk memudahkan 
+                          proses sertifikasi dan pengurusan dokumen pertanahan. Nikmati kemudahan 
+                          akses layanan pertanahan langsung dari platform MyProperty.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-3">Layanan Yang Akan Tersedia</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                          {bpnServices.map((service, idx) => (
+                            <div key={idx} className="flex items-start gap-2 p-3 rounded-lg bg-muted/50">
+                              <service.icon className="h-5 w-5 text-primary mt-0.5" />
+                              <div>
+                                <p className="font-medium text-sm text-foreground">{service.name}</p>
+                                <p className="text-xs text-muted-foreground">{service.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-3">Keuntungan</h3>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Cek status sertifikat secara online
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Pengajuan balik nama terintegrasi
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Tracking proses pengurusan dokumen
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                            Informasi zonasi dan tata ruang
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Contact Form */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Mail className="h-5 w-5 text-primary" />
+                      Daftar Notifikasi Layanan BPN
+                    </CardTitle>
+                    <CardDescription>
+                      Jadilah yang pertama tahu ketika layanan BPN tersedia
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ContactForm category="bpn" />
+                  </CardContent>
+                </Card>
+              </div>
             </TabsContent>
           </Tabs>
         </div>
