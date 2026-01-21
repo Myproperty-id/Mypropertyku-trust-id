@@ -1,10 +1,8 @@
 import { AlertTriangle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const Disclaimer = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
+  return <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
       <main className="flex-1">
@@ -23,36 +21,24 @@ const Disclaimer = () => {
           <div className="container-main max-w-4xl">
             <div className="bg-warning/10 border border-warning/20 rounded-xl p-6 mb-8 flex gap-4">
               <AlertTriangle className="w-6 h-6 text-warning flex-shrink-0 mt-0.5" />
-              <p className="text-foreground">
-                Harap baca disclaimer ini dengan seksama sebelum menggunakan layanan MyProperty. 
-                Dengan menggunakan Platform, Anda menyatakan telah memahami dan menyetujui 
-                semua ketentuan dalam disclaimer ini.
-              </p>
+              <p className="text-foreground">Harap baca disclaimer ini dengan seksama sebelum menggunakan layanan Mypropertyku. Dengan menggunakan Platform, Anda menyatakan telah memahami dan menyetujui semua ketentuan dalam disclaimer ini.</p>
             </div>
 
             <div className="space-y-8">
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">1. Status Platform</h2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    MyProperty adalah platform marketplace yang menghubungkan penjual dan 
-                    pembeli properti. <strong className="text-foreground">MyProperty bukan pemilik, 
+                  <p>Mypropertyku adalah platform marketplace yang menghubungkan penjual dan pembeli properti. MyProperty bukan pemilik, agen, atau broker properti yang terdaftar di Platform.<strong className="text-foreground">MyProperty bukan pemilik, 
                     agen, atau broker properti yang terdaftar di Platform.</strong>
                   </p>
-                  <p>
-                    MyProperty tidak terlibat langsung dalam transaksi jual-beli atau 
-                    sewa-menyewa properti antara Pengguna.
-                  </p>
+                  <p>Mypropertyku tidak terlibat langsung dalam transaksi jual-beli atau sewa-menyewa properti antara Pengguna.</p>
                 </div>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">2. Informasi Properti</h2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    Semua informasi properti yang ditampilkan di Platform berasal dari 
-                    pihak ketiga (Penjual). Meskipun MyProperty berupaya memverifikasi 
-                    informasi, <strong className="text-foreground">kami tidak dapat menjamin 
+                  <p>Semua informasi properti yang ditampilkan di Platform berasal dari pihak ketiga (Penjual). Meskipun Mypropertyku berupaya memverifikasi informasi, kami tidak dapat menjamin keakuratan, kelengkapan, atau keterkinian semua informasi.<strong className="text-foreground">kami tidak dapat menjamin 
                     keakuratan, kelengkapan, atau keterkinian semua informasi.</strong>
                   </p>
                   <p>
@@ -65,11 +51,7 @@ const Disclaimer = () => {
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">3. Proses Verifikasi</h2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    Verifikasi yang dilakukan MyProperty mencakup pengecekan dokumen 
-                    sertifikat dan status sengketa berdasarkan data yang tersedia pada 
-                    saat verifikasi.
-                  </p>
+                  <p>Verifikasi yang dilakukan Mypropertyku mencakup pengecekan dokumen sertifikat dan status sengketa berdasarkan data yang tersedia pada saat verifikasi.</p>
                   <p className="font-medium text-foreground">Verifikasi MyProperty TIDAK mencakup:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Jaminan bahwa properti bebas dari masalah di masa depan</li>
@@ -88,9 +70,7 @@ const Disclaimer = () => {
                     Semua transaksi properti mengandung risiko. Pengguna bertanggung jawab 
                     penuh atas keputusan untuk membeli, menjual, atau menyewa properti.
                   </p>
-                  <p>
-                    MyProperty menyarankan setiap pembeli untuk:
-                  </p>
+                  <p>Mypropertyku menyarankan setiap pembeli untuk:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Melakukan survei fisik properti secara langsung</li>
                     <li>Menyewa jasa notaris/PPAT untuk pengecekan legal</li>
@@ -105,9 +85,7 @@ const Disclaimer = () => {
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">5. Batasan Tanggung Jawab</h2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    Sejauh diizinkan oleh hukum, MyProperty tidak bertanggung jawab atas:
-                  </p>
+                  <p>Sejauh diizinkan oleh hukum, Mypropertyku tidak bertanggung jawab atas:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Kerugian finansial akibat transaksi yang dilakukan melalui Platform</li>
                     <li>Kerugian akibat informasi yang tidak akurat atau menyesatkan dari Penjual</li>
@@ -121,19 +99,12 @@ const Disclaimer = () => {
 
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">6. Konten Pihak Ketiga</h2>
-                <p className="text-muted-foreground">
-                  Platform mungkin berisi tautan ke website pihak ketiga atau konten yang 
-                  tidak dikendalikan oleh MyProperty. Kami tidak bertanggung jawab atas 
-                  konten, kebijakan privasi, atau praktik website pihak ketiga tersebut.
-                </p>
+                <p className="text-muted-foreground">Platform mungkin berisi tautan ke website pihak ketiga atau konten yang tidak dikendalikan oleh Mypropertyku. Kami tidak bertanggung jawab atas konten, kebijakan privasi, atau praktik website pihak ketiga tersebut.</p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">7. Perubahan Layanan</h2>
-                <p className="text-muted-foreground">
-                  MyProperty berhak untuk mengubah, menangguhkan, atau menghentikan 
-                  layanan atau fitur tertentu kapan saja tanpa pemberitahuan sebelumnya.
-                </p>
+                <p className="text-muted-foreground">Mypropertyku berhak untuk mengubah, menangguhkan, atau menghentikan layanan atau fitur tertentu kapan saja tanpa pemberitahuan sebelumnya.</p>
               </section>
 
               <section>
@@ -154,8 +125,8 @@ const Disclaimer = () => {
                   Jika Anda memiliki pertanyaan tentang disclaimer ini, silakan hubungi:
                 </p>
                 <div className="bg-muted/50 rounded-lg p-4">
-                  <p className="text-foreground font-medium">MyProperty</p>
-                  <p className="text-muted-foreground">Email: support@myproperty.id</p>
+                  <p className="text-foreground font-medium">Mypropertyku</p>
+                  <p className="text-muted-foreground">Email: support@mypropertyku.id</p>
                   <p className="text-muted-foreground">Telepon: (021) 1234-5678</p>
                 </div>
               </section>
@@ -165,8 +136,6 @@ const Disclaimer = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Disclaimer;
