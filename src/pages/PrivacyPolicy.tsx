@@ -1,9 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const PrivacyPolicy = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
+  return <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
       <main className="flex-1">
@@ -22,11 +20,7 @@ const PrivacyPolicy = () => {
           <div className="container-main max-w-4xl">
             <div className="prose prose-lg max-w-none">
               <div className="bg-card rounded-xl border border-border p-8 mb-8">
-                <p className="text-muted-foreground">
-                  MyProperty ("kami", "kita", atau "Platform") berkomitmen untuk melindungi 
-                  privasi pengguna. Kebijakan Privasi ini menjelaskan bagaimana kami 
-                  mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.
-                </p>
+                <p className="text-muted-foreground">Kami berkomitmen untuk melindungi privasi pengguna. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.</p>
               </div>
 
               <div className="space-y-8">
@@ -125,7 +119,7 @@ const PrivacyPolicy = () => {
                   </p>
                   <div className="bg-muted/50 rounded-lg p-4 mt-4">
                     <p className="text-foreground font-medium">MyProperty - Tim Privasi</p>
-                    <p className="text-muted-foreground">Email: privacy@myproperty.id</p>
+                    <p className="text-muted-foreground">Email: privacy@mypropertyku.id</p>
                     <p className="text-muted-foreground">Telepon: (021) 1234-5678</p>
                   </div>
                 </section>
@@ -136,8 +130,6 @@ const PrivacyPolicy = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default PrivacyPolicy;
