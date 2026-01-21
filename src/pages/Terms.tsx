@@ -1,9 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
 const Terms = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
+  return <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       
       <main className="flex-1">
@@ -21,18 +19,14 @@ const Terms = () => {
         <section className="py-12 md:py-16">
           <div className="container-main max-w-4xl">
             <div className="bg-card rounded-xl border border-border p-8 mb-8">
-              <p className="text-muted-foreground">
-                Dengan mengakses dan menggunakan platform MyProperty ("Platform"), 
-                Anda menyetujui untuk terikat dengan Syarat dan Ketentuan berikut. 
-                Jika Anda tidak setuju, mohon untuk tidak menggunakan Platform.
-              </p>
+              <p className="text-muted-foreground">Dengan mengakses dan menggunakan platform, Anda menyetujui untuk terikat dengan Syarat dan Ketentuan berikut. Jika Anda tidak setuju, mohon untuk tidak menggunakan Platform.</p>
             </div>
 
             <div className="space-y-8">
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">1. Definisi</h2>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li><strong className="text-foreground">"Platform"</strong> merujuk pada website dan aplikasi MyProperty</li>
+                  <li><strong className="text-foreground">"Platform"</strong>"Platform" merujuk pada website dan aplikasi Mypropertyku</li>
                   <li><strong className="text-foreground">"Pengguna"</strong> merujuk pada setiap orang yang mengakses atau menggunakan Platform</li>
                   <li><strong className="text-foreground">"Penjual"</strong> merujuk pada Pengguna yang mendaftarkan properti untuk dijual/disewakan</li>
                   <li><strong className="text-foreground">"Pembeli"</strong> merujuk pada Pengguna yang mencari properti</li>
@@ -119,10 +113,7 @@ const Terms = () => {
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">7. Penanganan Sengketa</h2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    Sengketa antara Pengguna harus diselesaikan secara langsung antar pihak. 
-                    MyProperty dapat membantu memediasi namun tidak wajib untuk menyelesaikan sengketa.
-                  </p>
+                  <p>Sengketa antara Pengguna harus diselesaikan secara langsung antar pihak. Mypropertyku dapat membantu memediasi namun tidak wajib untuk menyelesaikan sengketa.</p>
                   <p>
                     Untuk sengketa dengan Platform, Pengguna setuju untuk menyelesaikan 
                     melalui mediasi terlebih dahulu sebelum menempuh jalur hukum.
@@ -132,29 +123,17 @@ const Terms = () => {
 
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">8. Penangguhan dan Penghentian</h2>
-                <p className="text-muted-foreground">
-                  MyProperty berhak untuk menangguhkan atau menghentikan akun Pengguna 
-                  yang melanggar Syarat dan Ketentuan ini, tanpa pemberitahuan sebelumnya 
-                  untuk pelanggaran serius.
-                </p>
+                <p className="text-muted-foreground">Mypropertyku berhak untuk menangguhkan atau menghentikan akun Pengguna yang melanggar Syarat dan Ketentuan ini, tanpa pemberitahuan sebelumnya untuk pelanggaran serius.</p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">9. Hak Kekayaan Intelektual</h2>
-                <p className="text-muted-foreground">
-                  Semua konten di Platform, termasuk logo, desain, dan teks adalah milik 
-                  MyProperty dan dilindungi oleh hukum hak cipta. Pengguna tidak diizinkan 
-                  untuk menggunakan konten tersebut tanpa izin tertulis.
-                </p>
+                <p className="text-muted-foreground">Semua konten di Platform, termasuk logo, desain, dan teks adalah milik Mypropertyku dan dilindungi oleh hukum hak cipta. Pengguna tidak diizinkan untuk menggunakan konten tersebut tanpa izin tertulis.</p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">10. Perubahan Syarat</h2>
-                <p className="text-muted-foreground">
-                  MyProperty dapat mengubah Syarat dan Ketentuan ini kapan saja. 
-                  Perubahan akan diberitahukan melalui email atau notifikasi di Platform. 
-                  Penggunaan berkelanjutan setelah perubahan berarti penerimaan syarat baru.
-                </p>
+                <p className="text-muted-foreground">Mypropertyku dapat mengubah Syarat dan Ketentuan ini kapan saja. Perubahan akan diberitahukan melalui email atau notifikasi di Platform. Penggunaan berkelanjutan setelah perubahan berarti penerimaan syarat baru.</p>
               </section>
 
               <section>
@@ -170,7 +149,7 @@ const Terms = () => {
                 <h2 className="text-2xl font-bold text-foreground mb-4">12. Kontak</h2>
                 <div className="bg-muted/50 rounded-lg p-4">
                   <p className="text-foreground font-medium">MyProperty - Tim Legal</p>
-                  <p className="text-muted-foreground">Email: legal@myproperty.id</p>
+                  <p className="text-muted-foreground">Email: legal@mypropertyku.id</p>
                   <p className="text-muted-foreground">Telepon: (021) 1234-5678</p>
                 </div>
               </section>
@@ -180,8 +159,6 @@ const Terms = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Terms;
