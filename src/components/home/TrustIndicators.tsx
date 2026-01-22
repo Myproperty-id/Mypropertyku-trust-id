@@ -55,7 +55,9 @@ const TrustIndicators = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6">Mengapa Mypropertyku?<ShieldCheck className="w-4 h-4" />
-            ​
+            
+            Mengapa MyProperty?
+          
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-5">
             Kepercayaan adalah{" "}
