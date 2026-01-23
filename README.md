@@ -1,4 +1,4 @@
-<h1 align="center">MyProperty</h1>
+<h1 align="center">Mypropertyku</h1>
 <h3 align="center">Digital Property Listing Platform</h3>
 
 <p align="center">
@@ -37,9 +37,9 @@ and future backend or Web3 integrations.
 
 - Clean and minimal property-oriented interface  
 - Clear hierarchy of pricing, location, and details  
-- Card-based listing layout  
-- Mobile-first and responsive design  
-- Performance-focused frontend structure  
+- Card based listing layout  
+- Mobile first and responsive design  
+- Performance focused frontend structure  
 
 ---
 
