@@ -32,6 +32,8 @@ const Navbar = () => {
               alt="Mypropertyku Logo"
               className="h-10 w-auto object-contain"
               src="/lovable-uploads/941ef5e7-fdec-4555-899a-7caefe7cdba7.png"
+              width={60}
+              height={40}
             />
           </Link>
 

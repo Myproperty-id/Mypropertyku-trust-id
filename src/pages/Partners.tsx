@@ -261,6 +261,9 @@ const Partners = () => {
                         src={tukangProfesionalLogo}
                         alt="Tukang Profesional"
                         className="w-24 h-24 rounded-xl object-cover bg-white p-1"
+                        width={96}
+                        height={96}
+                        loading="lazy"
                       />
                       <div className="text-white">
                         <h2 className="text-2xl font-bold">Tukang Profesional</h2>

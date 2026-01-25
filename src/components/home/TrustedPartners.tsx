@@ -79,7 +79,14 @@ const TrustedPartners = () => {
           damping: 10
         }}>
             <a href={konstruksiPartners[0].website} target="_blank" rel="noopener noreferrer" className="block w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 bg-background border border-border">
-              <img src={konstruksiPartners[0].logo} alt={konstruksiPartners[0].name} className="w-full h-full object-cover" />
+              <img 
+                src={konstruksiPartners[0].logo} 
+                alt={konstruksiPartners[0].name} 
+                className="w-full h-full object-cover" 
+                width={112}
+                height={112}
+                loading="lazy"
+              />
             </a>
           </motion.div>
         </motion.div>
