@@ -55,40 +55,52 @@ const TrustedPartners = () => {
         
       </div>
 
-      {/* Single Logo Marquee */}
-      <div className="relative py-6">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-card to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-card to-transparent z-10" />
-        
-        <motion.div className="flex gap-16 items-center justify-center" animate={{
-        x: ["-100%", "100%"]
-      }} transition={{
-        x: {
-          duration: 12,
-          repeat: Infinity,
-          ease: "linear"
-        }
-      }} style={{
-        width: "fit-content"
-      }}>
-          <motion.div className="flex-shrink-0" whileHover={{
-          scale: 1.1
-        }} transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 10
-        }}>
-            <a href={konstruksiPartners[0].website} target="_blank" rel="noopener noreferrer" className="block w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 bg-background border border-border">
-              <img 
-                src={konstruksiPartners[0].logo} 
-                alt={konstruksiPartners[0].name} 
-                className="w-full h-full object-cover" 
-                width={112}
-                height={112}
-                loading="lazy"
-              />
-            </a>
-          </motion.div>
+      {/* Full Width Logo Marquee */}
+      <div className="relative py-4 w-full">
+        <motion.div 
+          className="flex gap-24 items-center" 
+          animate={{
+            x: ["0%", "-50%"]
+          }} 
+          transition={{
+            x: {
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }
+          }}
+        >
+          {/* Duplicate logos for seamless loop */}
+          {[...Array(8)].map((_, idx) => (
+            <motion.div 
+              key={idx}
+              className="flex-shrink-0" 
+              whileHover={{
+                scale: 1.1
+              }} 
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 10
+              }}
+            >
+              <a 
+                href={konstruksiPartners[0].website} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="block w-14 h-14 md:w-16 md:h-16 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 bg-background border border-border"
+              >
+                <img 
+                  src={konstruksiPartners[0].logo} 
+                  alt={konstruksiPartners[0].name} 
+                  className="w-full h-full object-cover" 
+                  width={64}
+                  height={64}
+                  loading="lazy"
+                />
+              </a>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
 
