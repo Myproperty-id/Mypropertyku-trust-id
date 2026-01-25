@@ -14,30 +14,120 @@ const AIAssistant = () => {
   const [response, setResponse] = useState<AIResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async () => {
-    if (!userMessage.trim()) {
+    const trimmedMessage = userMessage.trim();
+    
+    if (!trimmedMessage) {
       toast.error("Silakan masukkan pertanyaan Anda");
       return;
     }
+    
+    if (trimmedMessage.length < 3) {
+      toast.error("Pertanyaan terlalu pendek. Minimal 3 karakter.");
+      return;
+    }
+    
     setIsLoading(true);
     setResponse(null);
+    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+    
     try {
       const res = await fetch("https://myproperty.app.n8n.cloud/webhook/mypropertyku_handler", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
-          user_message: userMessage
-        })
+          user_message: trimmedMessage
+        }),
+        signal: controller.signal
       });
-      if (!res.ok) {
-        throw new Error("Gagal menghubungi AI Assistant");
+      
+      clearTimeout(timeoutId);
+      
+      // Handle specific HTTP status codes
+      if (res.status === 429) {
+        toast.error("Terlalu banyak permintaan. Silakan tunggu beberapa saat.");
+        return;
       }
-      const data = await res.json();
+      
+      if (res.status === 401 || res.status === 403) {
+        toast.error("Akses ditolak. Silakan coba lagi nanti.");
+        console.error("AI Assistant auth error:", res.status);
+        return;
+      }
+      
+      if (res.status === 500 || res.status === 502 || res.status === 503) {
+        toast.error("Server sedang sibuk. Silakan coba lagi dalam beberapa menit.");
+        console.error("AI Assistant server error:", res.status);
+        return;
+      }
+      
+      if (!res.ok) {
+        const errorText = await res.text().catch(() => "Unknown error");
+        console.error("AI Assistant HTTP error:", res.status, errorText);
+        toast.error(`Gagal menghubungi AI Assistant (${res.status})`);
+        return;
+      }
+      
+      // Parse response with error handling
+      let data;
+      try {
+        const responseText = await res.text();
+        
+        if (!responseText || responseText.trim() === "") {
+          console.error("AI Assistant returned empty response");
+          toast.error("AI Assistant tidak memberikan respons. Silakan coba lagi.");
+          return;
+        }
+        
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error("AI Assistant JSON parse error:", parseError);
+        toast.error("Format respons tidak valid. Silakan coba lagi.");
+        return;
+      }
+      
+      // Validate response structure
+      if (!data || (typeof data === 'object' && Object.keys(data).length === 0)) {
+        console.error("AI Assistant returned empty data object");
+        toast.error("Respons kosong dari AI Assistant. Silakan coba pertanyaan lain.");
+        return;
+      }
+      
+      // Check if response contains an error message from the backend
+      if (data.error) {
+        console.error("AI Assistant backend error:", data.error);
+        toast.error(typeof data.error === 'string' ? data.error : "Terjadi kesalahan pada AI Assistant.");
+        return;
+      }
+      
       setResponse(data);
+      
     } catch (error) {
-      console.error("AI Assistant error:", error);
-      toast.error("Terjadi kesalahan. Silakan coba lagi.");
+      clearTimeout(timeoutId);
+      
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          console.error("AI Assistant timeout");
+          toast.error("Waktu permintaan habis. Silakan coba lagi.");
+          return;
+        }
+        
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+          console.error("AI Assistant network error:", error.message);
+          toast.error("Koneksi gagal. Periksa koneksi internet Anda.");
+          return;
+        }
+        
+        console.error("AI Assistant error:", error.message);
+        toast.error("Terjadi kesalahan. Silakan coba lagi.");
+      } else {
+        console.error("AI Assistant unknown error:", error);
+        toast.error("Terjadi kesalahan tidak terduga.");
+      }
     } finally {
       setIsLoading(false);
     }
