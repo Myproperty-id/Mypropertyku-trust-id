@@ -53,14 +53,14 @@ const HowItWorks = () => {
     description: "Memberikan skor risiko berdasarkan hasil verifikasi menyeluruh."
   }];
   const faqs = [{
-    question: "Apa itu MyProperty?",
-    answer: "MyProperty adalah marketplace properti yang mengutamakan keamanan dan transparansi. Kami memverifikasi legalitas setiap properti untuk mengurangi risiko sengketa dan memberikan kepercayaan lebih kepada pembeli dan penjual."
+    question: "Apa itu Mypropertyku?",
+    answer: "Mypropertyku adalah marketplace properti yang mengutamakan keamanan dan transparansi. Kami memverifikasi legalitas setiap properti untuk mengurangi risiko sengketa dan memberikan kepercayaan lebih kepada pembeli dan penjual."
   }, {
     question: "Bagaimana proses verifikasi properti?",
     answer: "Proses verifikasi meliputi: 1) Validasi dokumen sertifikat, 2) Pengecekan status sengketa, 3) Verifikasi kepemilikan, dan 4) Analisis risiko. Seluruh proses biasanya memakan waktu 3-5 hari kerja."
   }, {
     question: "Berapa biaya untuk mendaftarkan properti?",
-    answer: "Pendaftaran properti di MyProperty gratis. Kami hanya mengenakan biaya untuk layanan verifikasi premium dan laporan detail sesuai paket yang dipilih."
+    answer: "Pendaftaran properti di Mypropertyku gratis. Kami hanya mengenakan biaya untuk layanan verifikasi premium dan laporan detail sesuai paket yang dipilih."
   }, {
     question: "Apa yang dimaksud dengan badge 'Terverifikasi'?",
     answer: "Badge 'Terverifikasi' menandakan bahwa properti telah melewati proses verifikasi legalitas kami. Ini memberikan jaminan tambahan bahwa dokumen properti valid dan tidak ada masalah hukum yang terdeteksi."
@@ -68,8 +68,8 @@ const HowItWorks = () => {
     question: "Bagaimana cara kerja skor risiko?",
     answer: "Skor risiko dihitung berdasarkan berbagai faktor seperti kelengkapan dokumen, status sengketa, tipe sertifikat, dan riwayat transaksi. Skor 'Rendah' berarti risiko minimal, sedangkan 'Tinggi' memerlukan perhatian khusus."
   }, {
-    question: "Apakah MyProperty menjamin transaksi?",
-    answer: "MyProperty menyediakan informasi verifikasi untuk membantu keputusan Anda. Namun, kami menyarankan untuk tetap melakukan due diligence tambahan dan berkonsultasi dengan notaris/PPAT untuk transaksi resmi."
+    question: "Apakah Mypropertyku menjamin transaksi?",
+    answer: "Mypropertyku menyediakan informasi verifikasi untuk membantu keputusan Anda. Namun, kami menyarankan untuk tetap melakukan due diligence tambahan dan berkonsultasi dengan notaris/PPAT untuk transaksi resmi."
   }, {
     question: "Bagaimana cara menghubungi penjual?",
     answer: "Setelah menemukan properti yang diminati, Anda dapat mengklik tombol 'Hubungi Penjual' untuk mengirim pesan atau melihat informasi kontak. Pastikan Anda sudah login untuk mengakses fitur ini."

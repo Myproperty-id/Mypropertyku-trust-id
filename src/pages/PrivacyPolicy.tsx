@@ -118,7 +118,7 @@ const PrivacyPolicy = () => {
                     hubungi kami di:
                   </p>
                   <div className="bg-muted/50 rounded-lg p-4 mt-4">
-                    <p className="text-foreground font-medium">MyProperty - Tim Privasi</p>
+                    <p className="text-foreground font-medium">Mypropertyku - Tim Privasi</p>
                     <p className="text-muted-foreground">Email: privacy@mypropertyku.id</p>
                     <p className="text-muted-foreground">Telepon: (021) 1234-5678</p>
                   </div>

@@ -15,16 +15,16 @@ A modern property platform focused on clarity, trust, and scalable frontend arch
   <img src="https://komarev.com/ghpvc/?username=myproperty&label=Repository%20Views&color=E74C3C&style=flat" />
 </p>
 
-![](https://visitor-badge.laobi.icu/badge?page_id=MyProperty.MyProperty)
+![](https://visitor-badge.laobi.icu/badge?page_id=Mypropertyku.Mypropertyku)
 ![GitHub stars](https://img.shields.io/github/stars/FujiAr/myproperty?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/FujiAr/myproperty?style=social)
 ![License](https://img.shields.io/github/license/FujiAr/myproperty)
 
 ---
 
-## About MyProperty
+## About Mypropertyku
 
-MyProperty is a digital real estate platform designed to simplify how users
+Mypropertyku is a digital real estate platform designed to simplify how users
 discover, compare, and understand property listings.
 
 The platform emphasizes clean UI, structured data presentation, and

@@ -38,6 +38,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import tukangProfesionalLogo from "@/assets/partners/tukangprofesional-logo.jpeg";
 
 interface ContactFormData {
@@ -62,12 +63,27 @@ const Partners = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast.success("Pesan berhasil dikirim! Partner kami akan segera menghubungi Anda.");
-    setFormData({ name: "", email: "", phone: "", message: "", category });
-    setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('partner_inquiries')
+        .insert({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim() || null,
+          message: formData.message.trim(),
+          category: category
+        });
+
+      if (error) throw error;
+      
+      toast.success("Pesan berhasil dikirim! Partner kami akan segera menghubungi Anda.");
+      setFormData({ name: "", email: "", phone: "", message: "", category });
+    } catch (error) {
+      console.error("Error submitting inquiry:", error);
+      toast.error("Gagal mengirim pesan. Silakan coba lagi.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const partnerCategories = [
@@ -359,7 +375,7 @@ const Partners = () => {
                         <p className="opacity-90">Solusi Pembiayaan Properti</p>
                         <Badge className="mt-2 bg-background/20 hover:bg-background/30 text-secondary-foreground">
                           <CheckCircle2 className="h-3 w-3 mr-1" />
-                          Coming Soon
+                          Segera Hadir
                         </Badge>
                       </div>
                     </div>
@@ -449,7 +465,7 @@ const Partners = () => {
                         <p className="opacity-90">Layanan Legalitas Properti</p>
                         <Badge className="mt-2 bg-background/20 hover:bg-background/30 text-accent-foreground">
                           <CheckCircle2 className="h-3 w-3 mr-1" />
-                          Coming Soon
+                          Segera Hadir
                         </Badge>
                       </div>
                     </div>
@@ -539,7 +555,7 @@ const Partners = () => {
                         <p className="text-muted-foreground">Badan Pertanahan Nasional</p>
                         <Badge className="mt-2 bg-background/50 hover:bg-background/60 text-foreground">
                           <CheckCircle2 className="h-3 w-3 mr-1" />
-                          Coming Soon
+                          Segera Hadir
                         </Badge>
                       </div>
                     </div>
@@ -552,7 +568,7 @@ const Partners = () => {
                         <p className="text-muted-foreground text-sm">
                           Kami sedang membangun integrasi dengan layanan BPN untuk memudahkan 
                           proses sertifikasi dan pengurusan dokumen pertanahan. Nikmati kemudahan 
-                          akses layanan pertanahan langsung dari platform MyProperty.
+                          akses layanan pertanahan langsung dari platform Mypropertyku.
                         </p>
                       </div>
 
@@ -624,7 +640,7 @@ const Partners = () => {
             Ingin Menjadi Partner?
           </h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Bergabunglah dengan ekosistem MyProperty dan jangkau lebih banyak pelanggan. 
+            Bergabunglah dengan ekosistem Mypropertyku dan jangkau lebih banyak pelanggan. 
             Kami mencari partner Bank, Notaris, dan BPN untuk melengkapi layanan kami.
           </p>
           <Button size="lg" asChild>

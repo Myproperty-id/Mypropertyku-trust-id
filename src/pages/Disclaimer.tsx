@@ -28,7 +28,7 @@ const Disclaimer = () => {
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">1. Status Platform</h2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>Mypropertyku adalah platform marketplace yang menghubungkan penjual dan pembeli properti. MyProperty bukan pemilik, agen, atau broker properti yang terdaftar di Platform.<strong className="text-foreground">MyProperty bukan pemilik, 
+                  <p>Mypropertyku adalah platform marketplace yang menghubungkan penjual dan pembeli properti. <strong className="text-foreground">Mypropertyku bukan pemilik, 
                     agen, atau broker properti yang terdaftar di Platform.</strong>
                   </p>
                   <p>Mypropertyku tidak terlibat langsung dalam transaksi jual-beli atau sewa-menyewa properti antara Pengguna.</p>
@@ -52,7 +52,7 @@ const Disclaimer = () => {
                 <h2 className="text-2xl font-bold text-foreground mb-4">3. Proses Verifikasi</h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>Verifikasi yang dilakukan Mypropertyku mencakup pengecekan dokumen sertifikat dan status sengketa berdasarkan data yang tersedia pada saat verifikasi.</p>
-                  <p className="font-medium text-foreground">Verifikasi MyProperty TIDAK mencakup:</p>
+                  <p className="font-medium text-foreground">Verifikasi Mypropertyku TIDAK mencakup:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Jaminan bahwa properti bebas dari masalah di masa depan</li>
                     <li>Penilaian kondisi fisik atau struktural bangunan</li>

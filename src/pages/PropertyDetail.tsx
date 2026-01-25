@@ -399,7 +399,7 @@ const PropertyDetail = () => {
                   <p className="flex items-start gap-2">
                     <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                     <span>
-                      MyProperty tidak menjamin kepemilikan atau legalitas properti. Informasi disediakan berdasarkan data yang tersedia. Selalu lakukan verifikasi mandiri sebelum transaksi.
+                      Mypropertyku tidak menjamin kepemilikan atau legalitas properti. Informasi disediakan berdasarkan data yang tersedia. Selalu lakukan verifikasi mandiri sebelum transaksi.
                     </span>
                   </p>
                 </div>
