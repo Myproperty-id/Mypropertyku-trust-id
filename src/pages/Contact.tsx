@@ -49,7 +49,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "support@myproperty.id",
+      value: "support@mypropertyku.id",
       desc: "Respons dalam 24 jam",
     },
     {
@@ -68,7 +68,7 @@ const Contact = () => {
       icon: MapPin,
       title: "Alamat",
       value: "Jakarta Selatan",
-      desc: "Gedung MyProperty, Jl. Sudirman",
+      desc: "Gedung Mypropertyku, Jl. Sudirman",
     },
   ];
 

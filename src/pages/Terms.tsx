@@ -64,12 +64,12 @@ const Terms = () => {
                 <h2 className="text-2xl font-bold text-foreground mb-4">4. Proses Verifikasi</h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    MyProperty melakukan verifikasi properti sebagai layanan tambahan. 
+                    Mypropertyku melakukan verifikasi properti sebagai layanan tambahan. 
                     Verifikasi mencakup pengecekan dokumen sertifikat dan status sengketa 
                     berdasarkan informasi yang tersedia.
                   </p>
                   <p>
-                    <strong className="text-foreground">Penting:</strong> Verifikasi MyProperty tidak 
+                    <strong className="text-foreground">Penting:</strong> Verifikasi Mypropertyku tidak 
                     menggantikan due diligence yang harus dilakukan pembeli. Kami menyarankan 
                     pembeli untuk tetap melakukan pengecekan independen sebelum transaksi.
                   </p>
@@ -93,14 +93,14 @@ const Terms = () => {
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">6. Tanggung Jawab Platform</h2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>MyProperty bertanggung jawab untuk:</p>
+                  <p>Mypropertyku bertanggung jawab untuk:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Menyediakan Platform yang berfungsi dengan baik</li>
                     <li>Melakukan verifikasi sesuai prosedur yang ditetapkan</li>
                     <li>Menjaga keamanan data Pengguna</li>
                     <li>Menangani keluhan sesuai prosedur</li>
                   </ul>
-                  <p>MyProperty <strong className="text-foreground">TIDAK</strong> bertanggung jawab atas:</p>
+                  <p>Mypropertyku <strong className="text-foreground">TIDAK</strong> bertanggung jawab atas:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Transaksi yang dilakukan di luar Platform</li>
                     <li>Kerugian akibat informasi yang tidak akurat dari Penjual</li>
@@ -148,7 +148,7 @@ const Terms = () => {
               <section>
                 <h2 className="text-2xl font-bold text-foreground mb-4">12. Kontak</h2>
                 <div className="bg-muted/50 rounded-lg p-4">
-                  <p className="text-foreground font-medium">MyProperty - Tim Legal</p>
+                  <p className="text-foreground font-medium">Mypropertyku - Tim Legal</p>
                   <p className="text-muted-foreground">Email: legal@mypropertyku.id</p>
                   <p className="text-muted-foreground">Telepon: (021) 1234-5678</p>
                 </div>
