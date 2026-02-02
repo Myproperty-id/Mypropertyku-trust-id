@@ -55,23 +55,44 @@ const TrustedPartners = () => {
         
       </div>
 
-      {/* Partner Logos - Single row with animation */}
+      {/* Partner Logos - Marquee when many partners, static when few */}
       <div className="relative py-6 w-full overflow-hidden">
+        {/* Fade edges for marquee effect */}
+        {konstruksiPartners.length > 3 && (
+          <>
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-card to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-card to-transparent z-10" />
+          </>
+        )}
+        
         <motion.div 
-          className="flex gap-16 items-center justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          className="flex gap-12 items-center"
+          {...(konstruksiPartners.length > 3 ? {
+            animate: { x: ["0%", "-50%"] },
+            transition: {
+              x: {
+                duration: 15,
+                repeat: Infinity,
+                ease: "linear"
+              }
+            }
+          } : {
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            transition: { duration: 0.5 },
+            viewport: { once: true },
+            className: "flex gap-12 items-center justify-center"
+          })}
         >
-          {/* Show all partners from konstruksiPartners array */}
-          {konstruksiPartners.map((partner) => (
+          {/* Duplicate logos for seamless loop when marquee is active */}
+          {(konstruksiPartners.length > 3 
+            ? [...konstruksiPartners, ...konstruksiPartners] 
+            : konstruksiPartners
+          ).map((partner, idx) => (
             <motion.div 
-              key={partner.id}
+              key={`${partner.id}-${idx}`}
               className="flex-shrink-0" 
-              whileHover={{
-                scale: 1.08
-              }} 
+              whileHover={{ scale: 1.08 }} 
               transition={{
                 type: "spring",
                 stiffness: 400,

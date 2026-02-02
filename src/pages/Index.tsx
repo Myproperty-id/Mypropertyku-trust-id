@@ -8,6 +8,7 @@ import PartnersSection from "@/components/home/PartnersSection";
 import TrustedPartners from "@/components/home/TrustedPartners";
 import AIAssistant from "@/components/home/AIAssistant";
 import CTASection from "@/components/home/CTASection";
+import ConsultationCTA from "@/components/home/ConsultationCTA";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <HowItWorks />
         <TrustedPartners />
         <PartnersSection />
+        <ConsultationCTA />
         <CTASection />
       </main>
       <Footer />
