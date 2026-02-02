@@ -23,27 +23,27 @@ const ConsultationCTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="relative bg-gradient-to-br from-primary/5 via-background to-accent/5 rounded-2xl md:rounded-3xl p-8 md:p-12 border border-border shadow-sm overflow-hidden"
+          className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-2xl md:rounded-3xl p-8 md:p-12 border border-primary/20 shadow-xl overflow-hidden"
         >
           {/* Decorative background */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-primary/5 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-accent/5 blur-3xl" />
+            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-accent/30 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-primary-foreground/10 blur-3xl" />
           </div>
 
           <div className="relative grid md:grid-cols-2 gap-8 items-center">
             {/* Content */}
             <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-accent-foreground text-sm font-semibold mb-4">
                 <Calendar className="w-4 h-4" />
                 Konsultasi Gratis
               </div>
               
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
                 Butuh Bantuan dengan Properti Anda?
               </h2>
               
-              <p className="text-muted-foreground mb-6 max-w-lg">
+              <p className="text-primary-foreground/80 mb-6 max-w-lg">
                 Jadwalkan panggilan konsultasi gratis dengan tim ahli kami. Kami siap membantu Anda menemukan properti impian atau menjual properti dengan harga terbaik.
               </p>
 
@@ -57,10 +57,10 @@ const ConsultationCTA = () => {
                     viewport={{ once: true }}
                     className="flex items-center gap-3 justify-center md:justify-start"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
-                      <benefit.icon className="w-4 h-4 text-accent" />
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent flex items-center justify-center">
+                      <benefit.icon className="w-4 h-4 text-accent-foreground" />
                     </div>
-                    <span className="text-foreground/80 text-sm md:text-base">{benefit.text}</span>
+                    <span className="text-primary-foreground text-sm md:text-base">{benefit.text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -68,7 +68,7 @@ const ConsultationCTA = () => {
               <Button
                 size="lg"
                 onClick={handleBooking}
-                className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all"
+                className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg hover:shadow-xl transition-all"
               >
                 <Calendar className="w-5 h-5" />
                 Jadwalkan Konsultasi
@@ -84,8 +84,8 @@ const ConsultationCTA = () => {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="w-56 h-56 lg:w-64 lg:h-64 rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-sm border border-border flex items-center justify-center shadow-xl">
-                  <Calendar className="w-20 h-20 lg:w-24 lg:h-24 text-primary/60" strokeWidth={1} />
+                <div className="w-56 h-56 lg:w-64 lg:h-64 rounded-3xl bg-primary-foreground/15 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center shadow-xl">
+                  <Calendar className="w-20 h-20 lg:w-24 lg:h-24 text-primary-foreground/70" strokeWidth={1} />
                 </div>
                 
                 {/* Floating badge */}
@@ -101,11 +101,11 @@ const ConsultationCTA = () => {
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute -bottom-3 -left-4 px-4 py-2 rounded-xl bg-card border border-border shadow-lg"
+                  className="absolute -bottom-3 -left-4 px-4 py-2 rounded-xl bg-primary-foreground border border-primary-foreground/20 shadow-lg"
                 >
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                    <span className="text-sm font-medium text-foreground">Online Sekarang</span>
+                    <span className="text-sm font-medium text-primary">Online Sekarang</span>
                   </div>
                 </motion.div>
               </motion.div>
