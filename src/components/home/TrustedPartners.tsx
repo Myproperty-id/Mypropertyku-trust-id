@@ -55,28 +55,22 @@ const TrustedPartners = () => {
         
       </div>
 
-      {/* Full Width Logo Marquee */}
-      <div className="relative py-4 w-full">
+      {/* Partner Logos - Single row with animation */}
+      <div className="relative py-6 w-full overflow-hidden">
         <motion.div 
-          className="flex gap-24 items-center" 
-          animate={{
-            x: ["0%", "-50%"]
-          }} 
-          transition={{
-            x: {
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }
-          }}
+          className="flex gap-16 items-center justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
         >
-          {/* Duplicate logos for seamless loop */}
-          {[...Array(8)].map((_, idx) => (
+          {/* Show all partners from konstruksiPartners array */}
+          {konstruksiPartners.map((partner) => (
             <motion.div 
-              key={idx}
+              key={partner.id}
               className="flex-shrink-0" 
               whileHover={{
-                scale: 1.1
+                scale: 1.08
               }} 
               transition={{
                 type: "spring",
@@ -85,17 +79,17 @@ const TrustedPartners = () => {
               }}
             >
               <a 
-                href={konstruksiPartners[0].website} 
+                href={partner.website} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="block w-14 h-14 md:w-16 md:h-16 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 bg-background border border-border"
+                className="block w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 bg-background border border-border"
               >
                 <img 
-                  src={konstruksiPartners[0].logo} 
-                  alt={konstruksiPartners[0].name} 
+                  src={partner.logo} 
+                  alt={partner.name} 
                   className="w-full h-full object-cover" 
-                  width={64}
-                  height={64}
+                  width={96}
+                  height={96}
                   loading="lazy"
                 />
               </a>
