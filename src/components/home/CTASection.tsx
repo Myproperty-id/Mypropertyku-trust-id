@@ -46,7 +46,7 @@ const CTASection = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="gap-2 w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold"
+                    className="gap-2 w-full sm:w-auto border-accent text-accent hover:bg-accent/10 font-semibold"
                   >
                     Pelajari Lebih Lanjut
                     <ArrowRight className="w-5 h-5" />
