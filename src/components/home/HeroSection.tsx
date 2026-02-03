@@ -142,7 +142,7 @@ const HeroSection = () => {
                 variant="outline"
                 className="gap-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold h-12 px-6 text-base" 
                 size="lg" 
-                onClick={() => navigate("/how-it-works")}
+                onClick={() => navigate("/legal-check")}
               >
                 <FileCheck className="w-5 h-5" />
                 Cek Legalitas Properti
