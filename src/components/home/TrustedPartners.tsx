@@ -51,8 +51,8 @@ const partnerCategories: PartnerCategory[] = [{
 }];
 const TrustedPartners = () => {
   return <section className="py-12 md:py-16 bg-card border-y border-border overflow-hidden">
-      <div className="container-main mb-8">
-        
+      <div className="container-main mb-8 text-center">
+        <h4 className="text-md font-semibold text-foreground">Mitra Kami</h4>
       </div>
 
       {/* Partner Logos - Marquee when many partners, static when few */}
@@ -119,21 +119,6 @@ const TrustedPartners = () => {
         </motion.div>
       </div>
 
-      {/* Partner Categories Grid */}
-      <div className="container-main mt-10">
-        <div className="text-center mb-6">
-          <h4 className="text-md font-semibold text-foreground">Mitra Kami</h4>
-          
-        </div>
-
-        
-
-        {/* Tukang Profesional Card */}
-        
-
-        {/* Verified Badge */}
-        
-      </div>
     </section>;
 };
 export default TrustedPartners;
