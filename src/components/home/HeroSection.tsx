@@ -110,7 +110,7 @@ const HeroSection = () => {
               <span className="text-sm font-semibold text-primary-foreground">#1 Platform Properti Terverifikasi di Indonesia</span>
             </div>
 
-            {/* Headline */}
+            {/* Headline - Value proposition dalam 3 detik */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground mb-6 leading-[1.1] animate-fade-in">
               Marketplace Properti{" "}
               <span className="relative inline-block">
@@ -123,10 +123,31 @@ const HeroSection = () => {
               <span className="text-accent">Terverifikasi</span>
             </h1>
 
-            {/* Subtext */}
-            <p className="text-lg md:text-xl text-primary-foreground/75 mb-8 max-w-xl animate-fade-in leading-relaxed">
-              Cek legalitas, kurangi risiko sengketa, dan transaksi lebih aman. Semua properti diverifikasi oleh tim ahli Mypropertyku.
+            {/* Subtext - Clear value */}
+            <p className="text-lg md:text-xl text-primary-foreground/80 mb-6 max-w-xl animate-fade-in leading-relaxed">
+              Cek legalitas, kurangi risiko sengketa, dan transaksi lebih aman.
             </p>
+
+            {/* Dual CTA Buttons - Primary & Secondary */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-8 animate-fade-in">
+              <Button 
+                className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-xl h-12 px-6 text-base" 
+                size="lg" 
+                onClick={() => navigate("/listings")}
+              >
+                <Search className="w-5 h-5" />
+                Cari Properti
+              </Button>
+              <Button 
+                variant="outline"
+                className="gap-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold h-12 px-6 text-base" 
+                size="lg" 
+                onClick={() => navigate("/how-it-works")}
+              >
+                <FileCheck className="w-5 h-5" />
+                Cek Legalitas Properti
+              </Button>
+            </div>
 
             {/* Search Box */}
             <div className="glass rounded-2xl p-5 md:p-6 shadow-2xl animate-fade-in border border-primary-foreground/10">
