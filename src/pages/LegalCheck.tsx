@@ -13,7 +13,9 @@ import {
   ArrowRight,
   Loader2,
   Info,
-  ExternalLink
+  ExternalLink,
+  Upload,
+  Sparkles
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
@@ -25,51 +27,55 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import { DocumentUploader } from "@/components/verification/DocumentUploader";
+import { VerificationResultCard } from "@/components/verification/VerificationResult";
+import { verifyDocument, type DocumentType, type VerificationResult } from "@/services/verificationService";
 
 // Certificate types with descriptions
 const CERTIFICATE_TYPES = [
   {
-    code: "shm",
+    code: "SHM",
     name: "SHM (Sertifikat Hak Milik)",
     description: "Hak kepemilikan tertinggi atas tanah. Dapat dimiliki selamanya dan diwariskan.",
     riskLevel: "low",
     icon: Shield,
   },
   {
-    code: "shgb",
+    code: "SHGB",
     name: "SHGB (Sertifikat Hak Guna Bangunan)",
     description: "Hak untuk mendirikan bangunan di atas tanah negara/orang lain. Berlaku 20-30 tahun, dapat diperpanjang.",
     riskLevel: "medium",
     icon: Building2,
   },
   {
-    code: "hpl",
-    name: "HPL (Hak Pengelolaan Lahan)",
-    description: "Hak untuk mengelola tanah negara. Biasanya diberikan kepada instansi pemerintah atau BUMN.",
-    riskLevel: "medium",
-    icon: FileText,
-  },
-  {
-    code: "girik",
-    name: "Girik / Letter C",
-    description: "Bukti pembayaran pajak tanah. Bukan bukti kepemilikan resmi, perlu ditingkatkan ke SHM.",
-    riskLevel: "high",
-    icon: AlertTriangle,
-  },
-  {
-    code: "ajb",
+    code: "AJB",
     name: "AJB (Akta Jual Beli)",
     description: "Bukti transaksi jual beli di hadapan PPAT. Perlu didaftarkan ke BPN untuk mendapat sertifikat.",
     riskLevel: "medium",
     icon: FileCheck,
   },
   {
-    code: "ppjb",
-    name: "PPJB (Perjanjian Pengikatan Jual Beli)",
-    description: "Perjanjian awal sebelum AJB. Biasa digunakan untuk properti yang belum selesai dibangun.",
+    code: "IMB",
+    name: "IMB (Izin Mendirikan Bangunan)",
+    description: "Izin untuk mendirikan bangunan di atas tanah. Wajib dimiliki untuk bangunan legal.",
+    riskLevel: "low",
+    icon: Building2,
+  },
+  {
+    code: "PBB",
+    name: "PBB (Pajak Bumi dan Bangunan)",
+    description: "Bukti pembayaran pajak properti tahunan. Penting untuk verifikasi kepemilikan.",
+    riskLevel: "low",
+    icon: FileText,
+  },
+  {
+    code: "GIRIK",
+    name: "Girik / Letter C",
+    description: "Bukti pembayaran pajak tanah. Bukan bukti kepemilikan resmi, perlu ditingkatkan ke SHM.",
     riskLevel: "high",
-    icon: HelpCircle,
+    icon: AlertTriangle,
   },
 ];
 
@@ -122,12 +128,20 @@ const FAQ_ITEMS = [
 ];
 
 const LegalCheck = () => {
+  // Manual check state
   const [certificateNumber, setCertificateNumber] = useState("");
   const [certificateType, setCertificateType] = useState("");
   const [isChecking, setIsChecking] = useState(false);
   const [checkResult, setCheckResult] = useState<null | { status: string; message: string }>(null);
 
-  const handleCheck = async () => {
+  // AI verification state
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [documentType, setDocumentType] = useState<DocumentType>("SHM");
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [verifyProgress, setVerifyProgress] = useState(0);
+  const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null);
+
+  const handleManualCheck = async () => {
     if (!certificateNumber.trim()) {
       toast.error("Masukkan nomor sertifikat terlebih dahulu");
       return;
@@ -140,16 +154,69 @@ const LegalCheck = () => {
     setIsChecking(true);
     setCheckResult(null);
 
-    // Simulate checking (MVP - no real backend yet)
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // For MVP, show educational result
     setCheckResult({
       status: "info",
       message: "Fitur pengecekan otomatis sedang dalam pengembangan. Untuk pengecekan resmi, silakan hubungi kantor BPN atau notaris terpercaya.",
     });
     
     setIsChecking(false);
+  };
+
+  const handleFileSelect = (file: File) => {
+    setSelectedFile(file);
+    setVerificationResult(null);
+  };
+
+  const handleClearFile = () => {
+    setSelectedFile(null);
+    setVerificationResult(null);
+    setVerifyProgress(0);
+  };
+
+  const handleAIVerify = async () => {
+    if (!selectedFile) {
+      toast.error("Pilih dokumen terlebih dahulu");
+      return;
+    }
+
+    setIsVerifying(true);
+    setVerificationResult(null);
+    
+    // Simulate progress
+    const progressInterval = setInterval(() => {
+      setVerifyProgress((prev) => {
+        if (prev >= 90) {
+          clearInterval(progressInterval);
+          return prev;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 300);
+
+    try {
+      const result = await verifyDocument(selectedFile, documentType);
+      setVerificationResult(result);
+      
+      if (result.verification_status === "VERIFIED") {
+        toast.success("Dokumen berhasil diverifikasi!");
+      } else if (result.verification_status === "NEEDS_REVIEW") {
+        toast.warning("Dokumen memerlukan review manual");
+      } else {
+        toast.error("Verifikasi mendeteksi masalah pada dokumen");
+      }
+    } catch (error) {
+      console.error("Verification error:", error);
+      toast.error("Gagal memverifikasi dokumen. Silakan coba lagi.");
+    } finally {
+      clearInterval(progressInterval);
+      setVerifyProgress(100);
+      setTimeout(() => {
+        setIsVerifying(false);
+        setVerifyProgress(0);
+      }, 500);
+    }
   };
 
   const getRiskBadge = (level: string) => {
@@ -195,13 +262,13 @@ const LegalCheck = () => {
               </h1>
               
               <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-                Cek status legalitas properti sebelum bertransaksi. Pahami jenis sertifikat, identifikasi potensi risiko, dan lindungi investasi Anda.
+                Cek status legalitas properti sebelum bertransaksi. Upload dokumen untuk verifikasi AI atau cari berdasarkan nomor sertifikat.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Certificate Check Form */}
+        {/* Verification Form - Tabbed Interface */}
         <section className="py-12 md:py-16 -mt-8 relative z-10">
           <div className="container-main">
             <motion.div
@@ -209,88 +276,184 @@ const LegalCheck = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Card className="max-w-2xl mx-auto shadow-xl border-border">
+              <Card className="max-w-3xl mx-auto shadow-xl border-border">
                 <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-xl md:text-2xl">Form Pengecekan Sertifikat</CardTitle>
+                  <CardTitle className="text-xl md:text-2xl">Verifikasi Dokumen Properti</CardTitle>
                   <CardDescription>
-                    Masukkan informasi sertifikat untuk mendapatkan informasi legalitas
+                    Pilih metode verifikasi yang sesuai dengan kebutuhan Anda
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div className="space-y-2">
-                      <Label htmlFor="cert-type">Jenis Sertifikat</Label>
-                      <Select value={certificateType} onValueChange={setCertificateType}>
-                        <SelectTrigger id="cert-type">
-                          <SelectValue placeholder="Pilih jenis sertifikat" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {CERTIFICATE_TYPES.map((cert) => (
-                            <SelectItem key={cert.code} value={cert.code}>
-                              {cert.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="cert-number">Nomor Sertifikat</Label>
-                      <Input
-                        id="cert-number"
-                        placeholder="Contoh: 12345/Kebayoran"
-                        value={certificateNumber}
-                        onChange={(e) => setCertificateNumber(e.target.value)}
-                      />
-                    </div>
-                  </div>
-
-                  <Button 
-                    className="w-full gap-2" 
-                    size="lg"
-                    onClick={handleCheck}
-                    disabled={isChecking}
-                  >
-                    {isChecking ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Sedang Memeriksa...
-                      </>
-                    ) : (
-                      <>
+                <CardContent>
+                  <Tabs defaultValue="ai-verify" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2 mb-6">
+                      <TabsTrigger value="ai-verify" className="gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Verifikasi AI
+                      </TabsTrigger>
+                      <TabsTrigger value="manual-check" className="gap-2">
                         <Search className="w-4 h-4" />
-                        Cek Legalitas
-                      </>
-                    )}
-                  </Button>
+                        Cek Manual
+                      </TabsTrigger>
+                    </TabsList>
 
-                  {/* Check Result */}
-                  {checkResult && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-4 rounded-xl bg-muted border border-border"
-                    >
-                      <div className="flex items-start gap-3">
-                        <Info className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                        <div>
-                          <p className="text-foreground font-medium mb-2">{checkResult.message}</p>
-                          <div className="flex flex-wrap gap-2">
-                            <Link to="/partners">
-                              <Button variant="outline" size="sm" className="gap-1">
-                                <ExternalLink className="w-3 h-3" />
-                                Hubungi Notaris Mitra
-                              </Button>
-                            </Link>
+                    {/* AI Verification Tab */}
+                    <TabsContent value="ai-verify" className="space-y-6">
+                      <div className="p-4 rounded-xl bg-primary/5 border border-primary/10">
+                        <div className="flex items-start gap-3">
+                          <Sparkles className="w-5 h-5 text-primary mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground mb-1">
+                              Verifikasi Dokumen dengan AI
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              Upload foto atau scan dokumen properti. AI kami akan menganalisis dan mengekstrak data penting dari dokumen Anda.
+                            </p>
                           </div>
                         </div>
                       </div>
-                    </motion.div>
-                  )}
 
-                  <p className="text-xs text-muted-foreground text-center">
-                    ⚠️ Hasil pengecekan bersifat informatif. Untuk validasi resmi, gunakan layanan BPN atau notaris.
-                  </p>
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label>Jenis Dokumen</Label>
+                          <Select 
+                            value={documentType} 
+                            onValueChange={(value) => setDocumentType(value as DocumentType)}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Pilih jenis dokumen" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {CERTIFICATE_TYPES.map((cert) => (
+                                <SelectItem key={cert.code} value={cert.code}>
+                                  {cert.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <DocumentUploader
+                          onFileSelect={handleFileSelect}
+                          selectedFile={selectedFile}
+                          onClear={handleClearFile}
+                          isUploading={isVerifying}
+                          uploadProgress={verifyProgress}
+                        />
+
+                        <Button
+                          className="w-full gap-2"
+                          size="lg"
+                          onClick={handleAIVerify}
+                          disabled={!selectedFile || isVerifying}
+                        >
+                          {isVerifying ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                              Memverifikasi dengan AI...
+                            </>
+                          ) : (
+                            <>
+                              <Sparkles className="w-4 h-4" />
+                              Verifikasi Dokumen
+                            </>
+                          )}
+                        </Button>
+                      </div>
+
+                      {/* AI Verification Result */}
+                      {verificationResult && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <VerificationResultCard result={verificationResult} />
+                        </motion.div>
+                      )}
+
+                      <p className="text-xs text-muted-foreground text-center">
+                        ⚠️ Hasil verifikasi AI bersifat indikatif. Untuk validasi resmi, gunakan layanan BPN atau notaris.
+                      </p>
+                    </TabsContent>
+
+                    {/* Manual Check Tab */}
+                    <TabsContent value="manual-check" className="space-y-6">
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div className="space-y-2">
+                          <Label htmlFor="cert-type">Jenis Sertifikat</Label>
+                          <Select value={certificateType} onValueChange={setCertificateType}>
+                            <SelectTrigger id="cert-type">
+                              <SelectValue placeholder="Pilih jenis sertifikat" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {CERTIFICATE_TYPES.map((cert) => (
+                                <SelectItem key={cert.code} value={cert.code}>
+                                  {cert.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <Label htmlFor="cert-number">Nomor Sertifikat</Label>
+                          <Input
+                            id="cert-number"
+                            placeholder="Contoh: 12345/Kebayoran"
+                            value={certificateNumber}
+                            onChange={(e) => setCertificateNumber(e.target.value)}
+                          />
+                        </div>
+                      </div>
+
+                      <Button 
+                        className="w-full gap-2" 
+                        size="lg"
+                        onClick={handleManualCheck}
+                        disabled={isChecking}
+                      >
+                        {isChecking ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            Sedang Memeriksa...
+                          </>
+                        ) : (
+                          <>
+                            <Search className="w-4 h-4" />
+                            Cek Legalitas
+                          </>
+                        )}
+                      </Button>
+
+                      {/* Manual Check Result */}
+                      {checkResult && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="p-4 rounded-xl bg-muted border border-border"
+                        >
+                          <div className="flex items-start gap-3">
+                            <Info className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                            <div>
+                              <p className="text-foreground font-medium mb-2">{checkResult.message}</p>
+                              <div className="flex flex-wrap gap-2">
+                                <Link to="/partners">
+                                  <Button variant="outline" size="sm" className="gap-1">
+                                    <ExternalLink className="w-3 h-3" />
+                                    Hubungi Notaris Mitra
+                                  </Button>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      <p className="text-xs text-muted-foreground text-center">
+                        ⚠️ Hasil pengecekan bersifat informatif. Untuk validasi resmi, gunakan layanan BPN atau notaris.
+                      </p>
+                    </TabsContent>
+                  </Tabs>
                 </CardContent>
               </Card>
             </motion.div>
