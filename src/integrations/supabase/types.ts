@@ -327,6 +327,57 @@ export type Database = {
           },
         ]
       }
+      verification_results: {
+        Row: {
+          created_at: string
+          document_type: string
+          extracted_data: Json | null
+          file_url: string | null
+          id: string
+          raw_text: string | null
+          risk_level: string | null
+          risk_recommendation: string | null
+          risk_score: number | null
+          updated_at: string
+          user_id: string | null
+          validation_details: Json | null
+          verification_id: string
+          verification_status: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_type: string
+          extracted_data?: Json | null
+          file_url?: string | null
+          id?: string
+          raw_text?: string | null
+          risk_level?: string | null
+          risk_recommendation?: string | null
+          risk_score?: number | null
+          updated_at?: string
+          user_id?: string | null
+          validation_details?: Json | null
+          verification_id: string
+          verification_status?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_type?: string
+          extracted_data?: Json | null
+          file_url?: string | null
+          id?: string
+          raw_text?: string | null
+          risk_level?: string | null
+          risk_recommendation?: string | null
+          risk_score?: number | null
+          updated_at?: string
+          user_id?: string | null
+          validation_details?: Json | null
+          verification_id?: string
+          verification_status?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
