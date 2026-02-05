@@ -37,15 +37,7 @@ const About = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary py-20">
-          <div className="container-main text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">Tentang Mypropertyku</h1>
-            <p className="text-xl text-primary-foreground/80 max-w-3xl mx-auto">
-              Platform properti terverifikasi pertama di Indonesia yang mengutamakan 
-              keamanan dan transparansi dalam setiap transaksi.
-            </p>
-          </div>
-        </section>
+        
 
         {/* Vision & Mission */}
         <section className="py-16 md:py-24">
