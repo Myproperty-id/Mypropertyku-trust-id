@@ -140,7 +140,7 @@ const HeroSection = () => {
               </Button>
               <Button 
                 variant="outline"
-                className="gap-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold h-12 px-6 text-base" 
+              className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 border-accent font-semibold h-12 px-6 text-base shadow-lg" 
                 size="lg" 
                 onClick={() => navigate("/legal-check")}
               >

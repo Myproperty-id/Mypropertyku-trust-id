@@ -32,6 +32,8 @@ import { toast } from "sonner";
 import { DocumentUploader } from "@/components/verification/DocumentUploader";
 import { VerificationResultCard } from "@/components/verification/VerificationResult";
 import { verifyDocument, type DocumentType, type VerificationResult } from "@/services/verificationService";
+import { VerificationHistory } from "@/components/verification/VerificationHistory";
+import { useAuth } from "@/hooks/useAuth";
 
 // Certificate types with descriptions
 const CERTIFICATE_TYPES = [
@@ -128,6 +130,8 @@ const FAQ_ITEMS = [
 ];
 
 const LegalCheck = () => {
+  const { user } = useAuth();
+
   // Manual check state
   const [certificateNumber, setCertificateNumber] = useState("");
   const [certificateType, setCertificateType] = useState("");
@@ -374,6 +378,13 @@ const LegalCheck = () => {
                       <p className="text-xs text-muted-foreground text-center">
                         ⚠️ Hasil verifikasi AI bersifat indikatif. Untuk validasi resmi, gunakan layanan BPN atau notaris.
                       </p>
+
+                      {/* Verification History for logged-in users */}
+                      {user && (
+                        <div className="mt-8 pt-6 border-t border-border">
+                          <VerificationHistory />
+                        </div>
+                      )}
                     </TabsContent>
 
                     {/* Manual Check Tab */}
