@@ -25,6 +25,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { VerificationBadge, VerifiedBadge } from "@/components/verification/VerificationBadge";
 import property1 from "@/assets/property-1.jpg";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
@@ -45,8 +46,9 @@ const property = {
   floors: 2,
   type: "Villa",
   certificate: "SHM",
-  verified: true,
-  riskLevel: "low",
+  verified: true as const,
+  verificationStatus: "verified" as const,
+  riskLevel: "low" as const,
   riskScore: 15,
   features: [
     "Kolam Renang",
@@ -136,10 +138,7 @@ const PropertyDetail = () => {
                   />
                   <div className="absolute top-4 left-4 flex gap-2">
                     {property.verified && (
-                      <Badge className="bg-accent text-accent-foreground gap-1">
-                        <ShieldCheck className="w-3 h-3" />
-                        Verified
-                      </Badge>
+                      <VerifiedBadge size="sm" />
                     )}
                     <Badge variant="secondary">{property.type}</Badge>
                     <Badge variant="outline" className="bg-card/90">{property.certificate}</Badge>
@@ -175,7 +174,12 @@ const PropertyDetail = () => {
               {/* Property Info */}
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="badge-verified">Risiko Rendah</span>
+                  <VerificationBadge 
+                    status={property.verificationStatus}
+                    riskLevel={property.riskLevel}
+                    riskScore={property.riskScore}
+                    size="sm"
+                  />
                   <span className="text-sm text-muted-foreground">•</span>
                   <span className="text-sm text-muted-foreground">{property.type}</span>
                 </div>
