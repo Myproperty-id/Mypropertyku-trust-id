@@ -22,6 +22,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { propertyFormSchema, parsePriceToNumber } from "@/lib/validations/property";
 import FileUploader from "@/components/admin/FileUploader";
+import { PropertyDocumentVerifier } from "@/components/verification/PropertyDocumentVerifier";
+import type { VerificationResult } from "@/services/verificationService";
 
 type CertificateType = "shm" | "shgb" | "hpl" | "girik" | "ajb" | "ppjb";
 
@@ -54,6 +56,8 @@ const PostProperty = () => {
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const [propertyImages, setPropertyImages] = useState<string[]>([]);
   const [legalDocuments, setLegalDocuments] = useState<string[]>([]);
+  const [verificationId, setVerificationId] = useState<string | null>(null);
+  const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null);
   const [formData, setFormData] = useState<PropertyData>({
     title: "",
     description: "",
@@ -475,6 +479,15 @@ const PostProperty = () => {
                 />
               </div>
 
+              {/* AI Document Verification */}
+              {user && (
+                <PropertyDocumentVerifier
+                  userId={user.id}
+                  onVerificationComplete={setVerificationResult}
+                  onVerificationIdChange={setVerificationId}
+                />
+              )}
+
               {/* Property Images Upload */}
               <div>
                 <Label className="flex items-center gap-2 mb-3">
@@ -549,6 +562,33 @@ const PostProperty = () => {
                       {formData.address}, {formData.city}, {formData.province}
                     </p>
                   </div>
+                  {verificationResult && (
+                    <div className="col-span-2">
+                      <span className="text-muted-foreground">Verifikasi AI:</span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                          verificationResult.verification_status === "VERIFIED" 
+                            ? "bg-accent/15 text-accent" 
+                            : verificationResult.verification_status === "NEEDS_REVIEW"
+                            ? "bg-warning/15 text-warning"
+                            : "bg-destructive/15 text-destructive"
+                        }`}>
+                          {verificationResult.verification_status === "VERIFIED" ? "Terverifikasi" : 
+                           verificationResult.verification_status === "NEEDS_REVIEW" ? "Perlu Review" : "Ditolak"}
+                        </span>
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                          verificationResult.risk_assessment.risk_level === "LOW" 
+                            ? "bg-accent/10 text-accent" 
+                            : verificationResult.risk_assessment.risk_level === "MEDIUM"
+                            ? "bg-warning/10 text-warning"
+                            : "bg-destructive/10 text-destructive"
+                        }`}>
+                          {verificationResult.risk_assessment.risk_level === "LOW" ? "Risiko Rendah" : 
+                           verificationResult.risk_assessment.risk_level === "MEDIUM" ? "Risiko Sedang" : "Risiko Tinggi"}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -556,6 +596,7 @@ const PostProperty = () => {
                 <p className="text-sm text-foreground">
                   <strong>Catatan:</strong> Setelah submit, properti Anda akan masuk ke antrian 
                   verifikasi. Tim kami akan meninjau dan memverifikasi dokumen dalam 3-5 hari kerja.
+                  {verificationResult && " Hasil verifikasi AI akan dikaitkan dengan listing ini."}
                 </p>
               </div>
             </div>

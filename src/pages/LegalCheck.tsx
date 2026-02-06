@@ -34,6 +34,7 @@ import { VerificationResultCard } from "@/components/verification/VerificationRe
 import { verifyDocument, type DocumentType, type VerificationResult } from "@/services/verificationService";
 import { VerificationHistory } from "@/components/verification/VerificationHistory";
 import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 
 // Certificate types with descriptions
 const CERTIFICATE_TYPES = [
@@ -179,6 +180,32 @@ const LegalCheck = () => {
     setVerifyProgress(0);
   };
 
+  const saveToDatabase = async (result: VerificationResult) => {
+    if (!user) return;
+    
+    try {
+      const { error } = await supabase.from("verification_results").insert([{
+        user_id: user.id,
+        verification_id: result.verification_id,
+        document_type: documentType as string,
+        verification_status: result.verification_status as string,
+        risk_level: result.risk_assessment.risk_level as string,
+        risk_score: result.risk_assessment.total_score,
+        risk_recommendation: result.risk_assessment.recommendation || null,
+        extracted_data: result.extracted_data ? JSON.parse(JSON.stringify(result.extracted_data)) : null,
+        validation_details: result.validation_details ? JSON.parse(JSON.stringify(result.validation_details)) : null,
+      }]);
+
+      if (error) {
+        console.error("Error saving verification:", error);
+      } else {
+        console.log("Verification saved to database");
+      }
+    } catch (err) {
+      console.error("Failed to save verification result:", err);
+    }
+  };
+
   const handleAIVerify = async () => {
     if (!selectedFile) {
       toast.error("Pilih dokumen terlebih dahulu");
@@ -202,6 +229,11 @@ const LegalCheck = () => {
     try {
       const result = await verifyDocument(selectedFile, documentType);
       setVerificationResult(result);
+      
+      // Save to database if user is logged in
+      if (user) {
+        await saveToDatabase(result);
+      }
       
       if (result.verification_status === "VERIFIED") {
         toast.success("Dokumen berhasil diverifikasi!");
