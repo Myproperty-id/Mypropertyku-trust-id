@@ -189,24 +189,41 @@ export function DocumentUploader({
         onDragOver={handleDrag}
         onDrop={handleDrop}
         className={cn(
-          "relative border-2 border-dashed rounded-xl p-8 transition-all text-center cursor-pointer",
+          "relative border-2 border-dashed rounded-xl p-8 transition-all duration-300 text-center cursor-pointer overflow-hidden",
           dragActive 
-            ? "border-primary bg-primary/5 scale-[1.02]" 
+            ? "border-primary bg-primary/10 scale-[1.02] shadow-lg shadow-primary/20 ring-4 ring-primary/30" 
             : "border-border hover:border-primary/50 hover:bg-muted/30",
           error && "border-red-300 bg-red-50"
         )}
       >
+        {/* Animated overlay when dragging */}
+        {dragActive && (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 animate-pulse pointer-events-none" />
+        )}
+        
+        {/* Animated corner indicators when dragging */}
+        {dragActive && (
+          <>
+            <div className="absolute top-2 left-2 w-6 h-6 border-t-3 border-l-3 border-primary rounded-tl-lg animate-pulse" />
+            <div className="absolute top-2 right-2 w-6 h-6 border-t-3 border-r-3 border-primary rounded-tr-lg animate-pulse" />
+            <div className="absolute bottom-2 left-2 w-6 h-6 border-b-3 border-l-3 border-primary rounded-bl-lg animate-pulse" />
+            <div className="absolute bottom-2 right-2 w-6 h-6 border-b-3 border-r-3 border-primary rounded-br-lg animate-pulse" />
+          </>
+        )}
+
         <input
           type="file"
           accept={accept}
           onChange={handleInputChange}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
         />
 
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 relative z-0">
           <div className={cn(
-            "w-16 h-16 rounded-full flex items-center justify-center transition-colors",
-            dragActive ? "bg-primary/20" : "bg-primary/10"
+            "w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300",
+            dragActive 
+              ? "bg-primary/30 scale-110 shadow-lg shadow-primary/30" 
+              : "bg-primary/10"
           )}>
             {dragActive ? (
               <Upload className="w-8 h-8 text-primary animate-bounce" />
@@ -215,16 +232,28 @@ export function DocumentUploader({
             )}
           </div>
 
-          <div>
-            <p className="font-medium text-foreground">
-              {dragActive ? "Lepaskan file di sini" : "Drag & drop dokumen di sini"}
+          <div className={cn(
+            "transition-all duration-300",
+            dragActive && "transform -translate-y-1"
+          )}>
+            <p className={cn(
+              "font-medium transition-all duration-300",
+              dragActive ? "text-primary text-lg" : "text-foreground"
+            )}>
+              {dragActive ? "✨ Lepaskan file di sini!" : "Drag & drop dokumen di sini"}
             </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              atau klik untuk memilih file
+            <p className={cn(
+              "text-sm mt-1 transition-all duration-300",
+              dragActive ? "text-primary/70" : "text-muted-foreground"
+            )}>
+              {dragActive ? "File siap diterima" : "atau klik untuk memilih file"}
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 text-xs text-muted-foreground">
+          <div className={cn(
+            "flex flex-wrap justify-center gap-2 text-xs transition-all duration-300",
+            dragActive ? "opacity-0 scale-95" : "opacity-100 scale-100 text-muted-foreground"
+          )}>
             <span className="px-2 py-1 bg-muted rounded">JPG</span>
             <span className="px-2 py-1 bg-muted rounded">PNG</span>
             <span className="px-2 py-1 bg-muted rounded">PDF</span>
