@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { Upload, X, FileImage, FileText, Loader2, Camera } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
+import { Upload, X, FileImage, FileText, Loader2, Camera, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
@@ -31,6 +31,16 @@ export function DocumentUploader({
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  // Reset success animation when file changes
+  useEffect(() => {
+    if (selectedFile) {
+      setShowSuccess(true);
+      const timer = setTimeout(() => setShowSuccess(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedFile]);
 
   const validateFile = (file: File): string | null => {
     if (!ACCEPTED_TYPES.includes(file.type)) {
@@ -102,24 +112,64 @@ export function DocumentUploader({
     return (bytes / (1024 * 1024)).toFixed(1) + " MB";
   };
 
-  // Show selected file preview
+  // Show selected file preview with success animation
   if (selectedFile && !isUploading) {
     return (
       <div className={cn("space-y-4", className)}>
-        <div className="relative border-2 border-primary/50 rounded-xl p-6 bg-primary/5">
+        {/* Success overlay animation */}
+        {showSuccess && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+            <div className="animate-scale-in">
+              <div className="relative">
+                {/* Ripple effect */}
+                <div className="absolute inset-0 animate-ping">
+                  <div className="w-24 h-24 rounded-full bg-accent/30" />
+                </div>
+                <div className="absolute inset-0 animate-ping" style={{ animationDelay: '150ms' }}>
+                  <div className="w-24 h-24 rounded-full bg-accent/20" />
+                </div>
+                {/* Checkmark */}
+                <div className="relative w-24 h-24 rounded-full bg-accent flex items-center justify-center shadow-2xl shadow-accent/50">
+                  <CheckCircle2 className="w-12 h-12 text-white animate-bounce" />
+                </div>
+              </div>
+              <p className="text-center mt-4 font-semibold text-accent text-lg animate-fade-in">
+                File Berhasil Ditambahkan!
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className={cn(
+          "relative border-2 rounded-xl p-6 transition-all duration-500",
+          showSuccess 
+            ? "border-accent bg-accent/10 shadow-lg shadow-accent/20" 
+            : "border-primary/50 bg-primary/5"
+        )}>
+          {/* Success checkmark badge */}
+          <div className={cn(
+            "absolute -top-3 -right-3 w-8 h-8 rounded-full bg-accent flex items-center justify-center shadow-lg transition-all duration-300",
+            showSuccess ? "scale-110 animate-bounce" : "scale-100"
+          )}>
+            <CheckCircle2 className="w-5 h-5 text-white" />
+          </div>
+
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-2 h-8 w-8"
+            className="absolute top-2 right-10 h-8 w-8"
             onClick={handleClear}
           >
             <X className="w-4 h-4" />
           </Button>
 
           <div className="flex items-start gap-4">
-            {/* Preview */}
+            {/* Preview with success glow */}
             {preview ? (
-              <div className="w-20 h-20 rounded-lg overflow-hidden bg-white border flex-shrink-0">
+              <div className={cn(
+                "w-20 h-20 rounded-lg overflow-hidden bg-white border flex-shrink-0 transition-all duration-300",
+                showSuccess && "ring-4 ring-accent/30 shadow-lg"
+              )}>
                 <img 
                   src={preview} 
                   alt="Preview" 
@@ -127,8 +177,14 @@ export function DocumentUploader({
                 />
               </div>
             ) : (
-              <div className="w-20 h-20 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <FileText className="w-8 h-8 text-primary" />
+              <div className={cn(
+                "w-20 h-20 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300",
+                showSuccess ? "bg-accent/20" : "bg-primary/10"
+              )}>
+                <FileText className={cn(
+                  "w-8 h-8 transition-colors duration-300",
+                  showSuccess ? "text-accent" : "text-primary"
+                )} />
               </div>
             )}
 
@@ -141,10 +197,19 @@ export function DocumentUploader({
                 {formatFileSize(selectedFile.size)}
               </p>
               <div className="flex items-center gap-2 mt-2">
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">
+                <span className={cn(
+                  "inline-flex items-center px-2 py-0.5 rounded text-xs font-medium transition-colors duration-300",
+                  showSuccess ? "bg-accent/20 text-accent" : "bg-primary/10 text-primary"
+                )}>
                   {selectedFile.type.includes("pdf") ? "PDF" : "Gambar"}
                 </span>
-                <span className="text-xs text-green-600">✓ Siap diverifikasi</span>
+                <span className={cn(
+                  "text-xs flex items-center gap-1 transition-all duration-300",
+                  showSuccess ? "text-accent font-medium" : "text-accent/80"
+                )}>
+                  <CheckCircle2 className="w-3 h-3" />
+                  Siap diverifikasi
+                </span>
               </div>
             </div>
           </div>
