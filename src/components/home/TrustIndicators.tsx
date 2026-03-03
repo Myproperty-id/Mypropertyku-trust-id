@@ -103,7 +103,7 @@ const TrustIndicators = () => {
 
         {/* Legal Disclaimer */}
         <div className="mt-10 text-center">
-          <p className="text-sm text-muted-foreground/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             <span className="font-medium">⚠️ Disclaimer:</span> Mypropertyku adalah platform marketplace properti yang menyediakan data dan edukasi legal. Informasi yang disediakan bukan merupakan nasihat hukum. Untuk keputusan legal, konsultasikan dengan notaris atau pengacara terdaftar.
           </p>
         </div>
