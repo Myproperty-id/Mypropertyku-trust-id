@@ -41,7 +41,7 @@ const Footer = () => {
 
           {/* Properti */}
           <div>
-            <h4 className="font-semibold mb-4 text-primary-foreground">Properti</h4>
+            <h3 className="font-semibold mb-4 text-primary-foreground">Properti</h3>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               <li><Link to="/listings" className="hover:text-primary-foreground transition-colors">Cari Properti</Link></li>
               <li><Link to="/listings?type=rumah" className="hover:text-primary-foreground transition-colors">Rumah</Link></li>
@@ -53,7 +53,7 @@ const Footer = () => {
 
           {/* Layanan */}
           <div>
-            <h4 className="font-semibold mb-4 text-primary-foreground">Layanan</h4>
+            <h3 className="font-semibold mb-4 text-primary-foreground">Layanan</h3>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               <li><Link to="/post-property" className="hover:text-primary-foreground transition-colors">Pasang Iklan</Link></li>
               <li><Link to="/how-it-works" className="hover:text-primary-foreground transition-colors">Cara Kerja</Link></li>
@@ -64,7 +64,7 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold mb-4 text-primary-foreground">Legal</h4>
+            <h3 className="font-semibold mb-4 text-primary-foreground">Legal</h3>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               <li><Link to="/privacy" className="hover:text-primary-foreground transition-colors">Kebijakan Privasi</Link></li>
               <li><Link to="/terms" className="hover:text-primary-foreground transition-colors">Syarat & Ketentuan</Link></li>
