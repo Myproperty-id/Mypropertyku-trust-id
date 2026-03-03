@@ -109,22 +109,29 @@ const FeaturedListings = () => {
     const fetchApprovedProperties = async () => {
       setLoading(true);
       
-      // Simulate loading delay for demo
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      
-      // Only fetch approved and published properties
-      const { data, error } = await supabase
-        .from("properties")
-        .select("id, title, city, province, price, images, bedrooms, bathrooms, building_size, property_type, certificate_type, risk_level")
-        .eq("verification_status", "approved")
-        .eq("is_published", true)
-        .order("created_at", { ascending: false })
-        .limit(3);
+      try {
+        // Use AbortController to prevent long-hanging requests
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000);
 
-      if (!error && data && data.length > 0) {
-        setProperties(data);
-      } else {
-        // Use demo properties if no real data
+        const { data, error } = await supabase
+          .from("properties")
+          .select("id, title, city, province, price, images, bedrooms, bathrooms, building_size, property_type, certificate_type, risk_level")
+          .eq("verification_status", "approved")
+          .eq("is_published", true)
+          .order("created_at", { ascending: false })
+          .limit(3)
+          .abortSignal(controller.signal);
+
+        clearTimeout(timeout);
+
+        if (!error && data && data.length > 0) {
+          setProperties(data);
+        } else {
+          setProperties(DEMO_PROPERTIES);
+        }
+      } catch {
+        // Gracefully fall back to demo data on timeout or network error
         setProperties(DEMO_PROPERTIES);
       }
       setLoading(false);
