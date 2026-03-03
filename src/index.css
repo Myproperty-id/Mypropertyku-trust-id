@@ -18,12 +18,12 @@
     --secondary-foreground: 222 47% 15%;
     
     /* Accent - Emerald Green (Verified/Trust) */
-    --accent: 160 84% 39%;
+    --accent: 160 84% 28%;
     --accent-foreground: 0 0% 100%;
     --accent-light: 160 60% 95%;
     
     /* Semantic Colors */
-    --success: 160 84% 39%;
+    --success: 160 84% 28%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 38 92% 15%;
@@ -31,7 +31,7 @@
     --danger-foreground: 0 0% 100%;
     
     /* Risk Levels */
-    --risk-low: 160 84% 39%;
+    --risk-low: 160 84% 28%;
     --risk-medium: 38 92% 50%;
     --risk-high: 0 84% 60%;
     
