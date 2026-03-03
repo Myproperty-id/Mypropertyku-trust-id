@@ -663,7 +663,7 @@ const LegalCheck = () => {
                         </Button>
                       </Link>
                       <Link to="/contact">
-                        <Button size="lg" variant="outline" className="gap-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                        <Button size="lg" className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground">
                           Hubungi Kami
                           <ArrowRight className="w-4 h-4" />
                         </Button>
