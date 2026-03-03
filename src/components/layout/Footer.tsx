@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              
+            <Link to="/" className="flex items-center gap-2 mb-4" aria-label="Mypropertyku - Halaman Utama">
+              <span className="sr-only">Mypropertyku</span>
             </Link>
             <p className="text-sm text-primary-foreground/70 mb-6">
               Marketplace properti aman dan terverifikasi di Indonesia. Cek legalitas, kurangi risiko sengketa.
