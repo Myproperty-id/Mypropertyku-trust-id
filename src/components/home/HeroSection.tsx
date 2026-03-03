@@ -158,7 +158,7 @@ const HeroSection = () => {
                     Lokasi
                   </label>
                   <Select value={location} onValueChange={setLocation}>
-                    <SelectTrigger className="bg-background/50 border-border/50 focus:bg-background">
+                    <SelectTrigger aria-label="Pilih lokasi" className="bg-background/50 border-border/50 focus:bg-background">
                       <MapPin className="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
                       <SelectValue placeholder="Pilih lokasi" />
                     </SelectTrigger>
@@ -176,7 +176,7 @@ const HeroSection = () => {
                     Tipe Properti
                   </label>
                   <Select value={propertyType} onValueChange={setPropertyType}>
-                    <SelectTrigger className="bg-background/50 border-border/50 focus:bg-background">
+                    <SelectTrigger aria-label="Pilih tipe properti" className="bg-background/50 border-border/50 focus:bg-background">
                       <Home className="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
                       <SelectValue placeholder="Pilih tipe" />
                     </SelectTrigger>
@@ -196,7 +196,7 @@ const HeroSection = () => {
                     Rentang Harga
                   </label>
                   <Select value={priceRange} onValueChange={setPriceRange}>
-                    <SelectTrigger className="bg-background/50 border-border/50 focus:bg-background">
+                    <SelectTrigger aria-label="Pilih rentang harga" className="bg-background/50 border-border/50 focus:bg-background">
                       <TrendingUp className="w-4 h-4 mr-2 text-muted-foreground shrink-0" />
                       <SelectValue placeholder="Pilih harga" />
                     </SelectTrigger>
