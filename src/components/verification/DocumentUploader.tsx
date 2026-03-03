@@ -258,7 +258,7 @@ export function DocumentUploader({
           dragActive 
             ? "border-primary bg-primary/10 scale-[1.02] shadow-lg shadow-primary/20 ring-4 ring-primary/30" 
             : "border-border hover:border-primary/50 hover:bg-muted/30",
-          error && "border-red-300 bg-red-50"
+          error && "border-destructive/30 bg-destructive/5"
         )}
       >
         {/* Animated overlay when dragging */}
@@ -329,7 +329,7 @@ export function DocumentUploader({
       </div>
 
       {error && (
-        <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+        <div className="flex items-center gap-2 p-3 bg-destructive/5 border border-destructive/20 rounded-lg text-destructive text-sm">
           <X className="w-4 h-4 flex-shrink-0" />
           {error}
         </div>
